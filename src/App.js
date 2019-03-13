@@ -1,28 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Button from './components/Button';
+import Content from './components/Content';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+	constructor(props){
+		super(props)
+		this.btnClickHandler = this.btnClickHandler.bind(this);
+		this.state = {
+			route: null
+		}
+	}
+	btnClickHandler(e) {
+		this.setState({
+			'route': e,
+			'active' : true
+		});
+		
+	}
+	render() {
+		const content = this.state.route ? this.state.route : 'Dashboard';
+		const isActive = this.state.active ? true : false;
+		return (
+			<div className="App">
+				<h1>posm8</h1>
+				<p>A super simple point of sale system</p>
+				<header>
+					<Button route="/Pos" clickHandler={this.btnClickHandler}> Pos </Button>
+					<Button route="/Inventory" clickHandler={this.btnClickHandler}> Inventory </Button>
+					<Button route="/Transaction" clickHandler={this.btnClickHandler}> Transaction </Button>
+				</header>
+				<article>
+					<Content show={isActive} main={content}></Content>
+				</article>
+			</div>
+		);
+	}
 }
 
 export default App;

@@ -1,33 +1,122 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background: #DDDCCE;
+  overflow: hidden;
+}
+
 .App {
+  display: block;
+  width: 520px;
+  height: 100%;
+  margin: 0 auto;
+}
+.App h1, .App p {
+  color: #fff;
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.App h1 {
+  font-size: 3em;
+}
+.App p {
+  color: #c2c1b3;
+}
+.App header {
+  display: block;
+}
+.App article {
+  display: block;
+  width: 960px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.button {
+  padding: 20px 30px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 5px;
+  background: #7EA5A9;
+  width: 100px;
+  display: inline-block;
+  cursor: pointer;
+  margin-right: 20px;
+  color: #DDDCCE;
+}
+.button:hover {
+  background: #5585BC;
 }
 
-.App-link {
-  color: #61dafb;
+.button:nth-last-child(1) {
+  margin-right: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.overlay {
+  background: #fff;
+  opacity: 0.5;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: none;
 }
+
+.modal-overlay {
+  display: block;
+}
+
+.content {
+  display: none;
+  background: #A6BAC5;
+  width: 98%;
+  min-height: 400px;
+  position: absolute;
+  top: 2.5%;
+  left: 1%;
+  margin: 0 auto;
+  border-radius: 3px;
+  overflow: hidden;
+  z-index: 2;
+}
+.content .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: #DDDCCE;
+  border: 2px solid #A6BAC5;
+  border-radius: 15px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 25px;
+  font-size: 1em;
+}
+.content .close:before {
+  content: "x";
+  position: absolute;
+  top: -2px;
+  right: 9px;
+}
+
+.content-header {
+  height: 40px;
+  background: #ccc;
+}
+
+.content-body {
+  min-height: 400px;
+  height: auto;
+  background: #ccc;
+}
+
+.content-show {
+  display: block;
+}
+
+.pos-content {
+  background: #A6BAC5;
+}
+
+/*# sourceMappingURL=App.css.map */
