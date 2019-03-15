@@ -78,14 +78,16 @@ body{
 	display: block;
 }
 
+
+
 .content{
 	display: none;
 	background: $bluePale;
-	width: 98%;
+	width: 95%;
 	min-height: 400px;
 	position: absolute;
 	top: 2.5%;
-	left: 1%;
+	left: 2.5%;
 	margin: 0 auto;
 	border-radius: 3px;
 	overflow: hidden;
@@ -112,7 +114,15 @@ body{
 
 		}
 	}
+
+	@media only screen and (min-width: 992px) and (max-width: 1999px){  
+		
+	}
+
 }
+
+
+
 
 .content-header{
 	height: 40px;
@@ -132,4 +142,40 @@ body{
 // POS
 .pos-content{
 	background: $bluePale;
+}
+
+.left{
+	width: 33%;
+	float: left;
+	overflow: hidden;
+	padding: 1%;
+
+	.body{
+		table{
+			width: 100%;
+			th{
+				font-size: .7em;
+			}
+		}
+	}
+}
+
+.right{
+	width:63%;
+	float: right;
+	overflow: hidden;
+	padding: 1%;
+}
+
+// GLOBAL MEDIA QUERIES
+@media only screen and (min-width: 320px) and (max-width: 479px){  }
+
+@media only screen and (min-width: 480px) and (max-width: 767px){  }
+
+@media only screen and (min-width: 768px) and (max-width: 991px){ 
+	
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1999px){  
+
 }
