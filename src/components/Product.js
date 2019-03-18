@@ -6,7 +6,7 @@ class Product extends Component {
 		var id = e.target.dataset.id;
 		this.props.addToCart(id);
 	}
-	
+
 	render() {
 		const detail = this.props.detail;
 		const details = (
