@@ -21,13 +21,13 @@ class Pos extends Component {
 							</tr>
 						 </thead>
 						 <tbody>
-						 <tr>
-								<th>Product</th>
-								<th>Price</th>
-								<th>Qty</th>
-								<th>Subtotal</th>
-								<th>Delete</th>
-							</tr>
+						<tr>
+							<th>Product</th>
+							<th>Price</th>
+							<th>Qty</th>
+							<th>Subtotal</th>
+							<th>Delete</th>
+						</tr>
 						 </tbody>
 					 </table>
 					</div>

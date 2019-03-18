@@ -4,178 +4,80 @@ $aquaPale : #7EA5A9;
 $blueFrog : #5585BC;
 $blackFrog : #1A1924;
 
-html,body{	
-	height: 100%;
-}
+// html,body{	
+// 	height: 100%;
+// }
 
 body{
 	min-height: 100%;
-	background: $cream;
-	overflow: hidden;
+	// background: $aquaPale;
 }
 
 .App{
-	display: block;
-	width: 520px;
-	height: 100%;
+	overflow-y: auto;
+	width: 960px;
 	margin: 0 auto;
-
-	h1,p{
-		color: #fff;		
-		text-align: center
-	}
-
-	h1{
-		font-size: 3em;
-	}
-	p{
-		color: rgb(194, 193, 179);
-	}
-	
-	header{
-		display: block;
-	}
-
-	article{
-		display: block;
-		width: 960px;
-	}
 }
 
-.button {
-	padding: 20px 30px;
-	text-align: center;
-	line-height: 40px;
-	border-radius: 5px;
-	background: $aquaPale;
-	width: 100px;
-	display: inline-block;
-	cursor: pointer;
-	margin-right: 20px;	
-	color: $cream;
-
-	&:hover{
-		background: $blueFrog;
-	}
-}
-
-.button:nth-last-child(1){
-	margin-right:0;
-}
-
-.overlay{
-	background: #fff;
-	opacity: .5;
-	position: absolute;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	display: none;
-}
-
-.modal-overlay{
-	display: block;
-}
-
-
-
-.content{
-	display: none;
-	background: $bluePale;
-	width: 95%;
-	min-height: 400px;
-	position: absolute;
-	top: 2.5%;
-	left: 2.5%;
-	margin: 0 auto;
-	border-radius: 3px;
-	overflow: hidden;
-	z-index: 2;
-
-	.close{
-		position: absolute;
-		right: 0;
-		top: 0;
-		background: $cream;
-		border: 2px solid $bluePale;
-		border-radius: 15px;
-		width: 25px;
-		height: 25px;
-		text-align: center;
-		line-height: 25px;
-		font-size: 1em;
-
-		&:before{
-			content: 'x';
-			position: absolute;
-			top: -2px;
-			right:9px;
-
-		}
-	}
-
-	@media only screen and (min-width: 992px) and (max-width: 1999px){  
-		
-	}
-
-}
-
-
-
-
-.content-header{
-	height: 40px;
-	background: #ccc;
-}
-
-.content-body{
-	min-height: 400px;
-	height: auto;
-	background: #ccc;
-}
-
-.content-show{
-	display: block;
-}
-
-// POS
-.pos-content{
-	background: $bluePale;
-}
-
-.left{
-	width: 33%;
+.item{
+	max-width: 198px;
 	float: left;
+	border: 1px solid #ccc;
 	overflow: hidden;
-	padding: 1%;
-
-	.body{
-		table{
-			width: 100%;
-			th{
-				font-size: .7em;
-			}
+	margin: 20px;
+	
+	.image{
+		display: block;
+		width:auto;
+		height:198px;
+		overflow: hidden;
+		background: $cream;
+		&:before{
+			position: absolute;
+			content: "200 x 200";
+			width: 198px;
+			height: 198px;
+			background: #ccc;
+			text-align: center;
+			line-height: 198px;
 		}
+	}
+
+}
+
+.name{
+	width: inherit;
+	font-size: .8em;
+	height: 45px;
+	padding: 5px;
+	font-weight: bold;
+}
+
+.price{
+	font-size: .8em;
+	font-weight: bold;
+	width: inherit;
+	padding: 5px;
+	height: 30px;
+
+	&:before{
+		content: "\0024";
+		margin-left:3px;
 	}
 }
 
-.right{
-	width:63%;
-	float: right;
-	overflow: hidden;
-	padding: 1%;
-}
-
-// GLOBAL MEDIA QUERIES
-@media only screen and (min-width: 320px) and (max-width: 479px){  }
-
-@media only screen and (min-width: 480px) and (max-width: 767px){  }
-
-@media only screen and (min-width: 768px) and (max-width: 991px){ 
-	
-}
-
-@media only screen and (min-width: 992px) and (max-width: 1999px){  
-
+.add-to-cart{
+	background: $aquaPale;
+	color:$cream;
+	border: none;
+	width: 188px;
+	height: 30px;
+	padding: 5px;
+	margin: 5px;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 5px;
+	&:hover{
+		background: #6d8e92;
+	}
 }

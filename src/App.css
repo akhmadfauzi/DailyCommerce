@@ -1,141 +1,71 @@
-html, body {
-  height: 100%;
-}
-
 body {
   min-height: 100%;
-  background: #DDDCCE;
-  overflow: hidden;
 }
 
 .App {
-  display: block;
-  width: 520px;
-  height: 100%;
-  margin: 0 auto;
-}
-.App h1, .App p {
-  color: #fff;
-  text-align: center;
-}
-.App h1 {
-  font-size: 3em;
-}
-.App p {
-  color: #c2c1b3;
-}
-.App header {
-  display: block;
-}
-.App article {
-  display: block;
+  overflow-y: auto;
   width: 960px;
-}
-
-.button {
-  padding: 20px 30px;
-  text-align: center;
-  line-height: 40px;
-  border-radius: 5px;
-  background: #7EA5A9;
-  width: 100px;
-  display: inline-block;
-  cursor: pointer;
-  margin-right: 20px;
-  color: #DDDCCE;
-}
-.button:hover {
-  background: #5585BC;
-}
-
-.button:nth-last-child(1) {
-  margin-right: 0;
-}
-
-.overlay {
-  background: #fff;
-  opacity: 0.5;
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  display: none;
-}
-
-.modal-overlay {
-  display: block;
-}
-
-.content {
-  display: none;
-  background: #A6BAC5;
-  width: 95%;
-  min-height: 400px;
-  position: absolute;
-  top: 2.5%;
-  left: 2.5%;
   margin: 0 auto;
-  border-radius: 3px;
-  overflow: hidden;
-  z-index: 2;
-}
-.content .close {
-  position: absolute;
-  right: 0;
-  top: 0;
-  background: #DDDCCE;
-  border: 2px solid #A6BAC5;
-  border-radius: 15px;
-  width: 25px;
-  height: 25px;
-  text-align: center;
-  line-height: 25px;
-  font-size: 1em;
-}
-.content .close:before {
-  content: "x";
-  position: absolute;
-  top: -2px;
-  right: 9px;
-}
-.content-header {
-  height: 40px;
-  background: #ccc;
 }
 
-.content-body {
-  min-height: 400px;
-  height: auto;
-  background: #ccc;
-}
-
-.content-show {
-  display: block;
-}
-
-.pos-content {
-  background: #A6BAC5;
-}
-
-.left {
-  width: 33%;
+.item {
+  max-width: 198px;
   float: left;
+  border: 1px solid #ccc;
   overflow: hidden;
-  padding: 1%;
+  margin: 20px;
 }
-.left .body table {
-  width: 100%;
+.item .image {
+  display: block;
+  width: auto;
+  height: 198px;
+  overflow: hidden;
+  background: #DDDCCE;
 }
-.left .body table th {
-  font-size: 0.7em;
+.item .image:before {
+  position: absolute;
+  content: "200 x 200";
+  width: 198px;
+  height: 198px;
+  background: #ccc;
+  text-align: center;
+  line-height: 198px;
 }
 
-.right {
-  width: 63%;
-  float: right;
-  overflow: hidden;
-  padding: 1%;
+.name {
+  width: inherit;
+  font-size: 0.8em;
+  height: 45px;
+  padding: 5px;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 0.8em;
+  font-weight: bold;
+  width: inherit;
+  padding: 5px;
+  height: 30px;
+}
+.price:before {
+  content: "$";
+  margin-left: 3px;
+}
+
+.add-to-cart {
+  background: #7EA5A9;
+  color: #DDDCCE;
+  border: none;
+  width: 188px;
+  height: 30px;
+  padding: 5px;
+  margin: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.add-to-cart:hover {
+  background: #6d8e92;
 }
 
 /*# sourceMappingURL=App.css.map */

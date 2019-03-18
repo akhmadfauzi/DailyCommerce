@@ -1,41 +1,85 @@
 import React, { Component } from 'react';
 import './App.css';
-import Button from './components/Button';
-import Content from './components/Content';
+import ProductList from './components/ProductList';
+
+var productLink = 'https://api.jsonbin.io/b/5c8f06732d33133c40155809/9';
+var key = '$2a$10$Sv7oWDHBiXDaUnQ26ruN7.mxTX1YNwHa1n2pRqsuBmZ1FEqkm40bK';
 
 class App extends Component {
-	constructor(props){
+	constructor(props) {
 		super(props)
-		this.btnClickHandler = this.btnClickHandler.bind(this);
-		this.state = {
-			route: null
-		}
+		this.state = { 'products': null };
+		this.getProducts(this.state);
 	}
-	btnClickHandler(e) {
-		this.setState({
-			'route': e,
-			'active' : true
-		});
+
+	componentDidMount() {
+	}
+
+	getProducts(state) {
+		var localStore = localStorage.getItem('products');
+		if(!localStore){
+			fetch(productLink, {
+				'headers': {
+					'secret-key': key
+				}
+			})
+			.then(function (response) {
+				if (response.status !== 200) {
+					console.log('load fails');
+					return false;
+				}
+				return response.json();
+			})
+			.then(function (products) {
+				state.products = products;
+				// self.setState({ 'products': products });
+				localStorage.setItem('products', JSON.stringify(products));
+			});
+		}else{
+			state.products = JSON.parse(localStore).slice(0,8);
+			// self.setState({ 'products': JSON.parse(localStore) });
+		}
 		
 	}
+
+	addToCartHandler(item){
+		var product = this.findById(item);
+		alert(product.price)
+	}
+
+	findById(id){
+		var products = this.state.products;
+		for (let i = 0; i < products.length; i++) {
+			if(products[i].id == id){
+				return products[i];
+			}
+		}
+
+		return null;
+	}		
+	
+
 	render() {
-		const content = this.state.route ? this.state.route : 'Dashboard';
-		const isActive = this.state.active ? true : false;
-		return (
-			<div className="App">
-				<h1>posm8</h1>
-				<p>A super simple point of sale system</p>
-				<header>
-					<Button route="/Pos" clickHandler={this.btnClickHandler}> Pos </Button>
-					<Button route="/Inventory" clickHandler={this.btnClickHandler}> Inventory </Button>
-					<Button route="/Transaction" clickHandler={this.btnClickHandler}> Transaction </Button>
-				</header>
-				<article>
-					<Content show={isActive} main={content}></Content>
-				</article>
-			</div>
-		);
+		let products = this.state.products ? this.state.products : null;
+		if (!products) {
+			return (
+				<div className="App">
+					Loading...
+				</div>
+			);
+		} else {
+			return (
+				<div className="App">
+					<ProductList 
+						products={products} 
+						addToCart={this.addToCartHandler.bind(this)}>
+					</ProductList>
+				</div>
+			);
+		}
+
 	}
 }
 
 export default App;
+
