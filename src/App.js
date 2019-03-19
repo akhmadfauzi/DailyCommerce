@@ -104,7 +104,8 @@ class App extends Component {
 					<Cart 
 						selectedProducts={this.state.cart}
 						onCartClose={this.onCartCloseHandler.bind(this)} 
-						openCart={this.state.openCart} ></Cart>
+						openCart={this.state.openCart}>
+					</Cart>
 					<div className="App">
 						<ProductList 
 							products={products} 
@@ -112,7 +113,6 @@ class App extends Component {
 						</ProductList>
 					</div>
 				</React.Fragment>
-				
 			);
 		}
 

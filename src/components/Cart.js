@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import CartList from './CartList';
 
 class Cart extends Component {
+	
 	render() {
-		const cartClass = this.props.openCart ? 'cart cart-show' : 'cart';
+		let cartClass = this.props.openCart ? 'cart cart-show' : 'cart';
 		const cartOverlayClass = this.props.openCart ? 'cart-overlay cart-overlay-show' : 'cart-overlay';
 		return (
 			<React.Fragment>
 				<div className={cartClass}>
 					<header>
-						{/* onCartClose={this.props.onCartClose.bind(this)} */}
 						<button className="cart-close" onClick={this.props.onCartClose.bind(this)}><i className="fa fa-close"></i></button>
 					</header>
 					<article>

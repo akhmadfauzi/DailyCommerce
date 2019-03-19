@@ -15,6 +15,10 @@ body{
 
 .modal-open{
 	overflow: hidden;
+	padding-right: 17px;
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		padding-right: 0;
+	}
 }
 
 .App{
@@ -22,6 +26,18 @@ body{
 	width: 960px;
 	margin: 0 auto;
 	padding-top:60px;	
+
+	@media only screen and (min-width: 768px) and (max-width: 991px){  
+		width: 735px;
+	}
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		width: 100%;
+	}
+
+	@media only screen and (min-width: 480px) and (max-width: 767px){  
+		width: 480px;
+	}
 }
 
 .item{
@@ -30,6 +46,21 @@ body{
 	border: 1px solid #ccc;
 	overflow: hidden;
 	margin: 20px;
+	
+
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		margin: 2%;
+		max-width: 96%;
+		width: 96%;
+		float: none;
+
+	}
+
+	@media only screen and (min-width: 480px) and (max-width: 767px){  
+		max-width: 198px;
+		float: left;
+	}
 	
 	.image{
 		display: block;
@@ -45,6 +76,16 @@ body{
 			background: #ccc;
 			text-align: center;
 			line-height: 198px;
+			@media only screen and (min-width: 320px) and (max-width: 479px){  
+				max-width: 96%;
+				width: 96%;
+			}
+
+		}
+
+		@media only screen and (min-width: 320px) and (max-width: 479px){  
+			max-width: 100%;
+			width: 100%;
 		}
 	}
 
@@ -84,6 +125,11 @@ body{
 	border-radius: 5px;
 	&:hover{
 		background: #6d8e92;
+	}
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		max-width: 100%;
+		width: 98%;
 	}
 }
 // NAVIGATION
@@ -149,16 +195,30 @@ body{
 }
 
 .nav-cart-open{
-	position: relative;
+	position: relative;	
+}
+
+.nav-cart-open > *{
+	pointer-events: none;
 }
 
 // CART
-.cart,.cart-overlay{
+.cart-overlay{
 	display: none; 
 }
-.cart-show,.cart-overlay-show{
+.cart-overlay-show{
 	display: block;
+
 }
+
+.cart-show{
+	right: 0 !important;
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		right: 100%;
+	}
+}
+
 .cart{
 	width: 300px;
 	min-height: 100%;
@@ -166,8 +226,8 @@ body{
 	background: #fff;
 	z-index: 1000;
 	position: fixed;
-	right: 0;
-	transition: all .5s linear;
+	right: -300px;
+	transition: right .2s linear;
 
 	header,footer{
 		height: 50px;
@@ -200,6 +260,14 @@ body{
 		position: fixed;
 		bottom: 0;
 	}
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		max-width: 100%;
+		width: 100%;
+
+		right: -100%;
+
+	}
 }
 
 .cart-overlay{
@@ -213,6 +281,7 @@ body{
 	background: $blackFrog;
 	opacity: .5;
 	z-index: 999;
+	padding-right:17px;
 }
 
 .cart-list{
@@ -224,6 +293,7 @@ body{
 	font-size: .8em;
 	font-weight: bold;	
 }
+
 .cart-qty{
 	
 }
@@ -269,4 +339,8 @@ body{
 
 .btn-block{
 	width: 290px;
+	
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		width: 97%;
+	}
 }
