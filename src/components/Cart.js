@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import CartList from './CartList';
+import Overlay from './Overlay';
+
 
 class Cart extends Component {
 	
 	render() {
-		let cartClass = this.props.openCart ? 'cart cart-show' : 'cart';
+		let cartClass = this.props.openCart ? (this.props.cartSlide ? 'cart cart-show cart-in' : 'cart cart-show') : 'cart';
 		const cartOverlayClass = this.props.openCart ? 'cart-overlay cart-overlay-show' : 'cart-overlay';
+		
+
 		return (
 			<React.Fragment>
 				<div className={cartClass}>
@@ -19,7 +23,7 @@ class Cart extends Component {
 						<button className="btn btn-primary btn-block">Checkout</button>
 					</footer>
 				</div>
-				<div className={cartOverlayClass}></div>
+				<Overlay overlayClass={cartOverlayClass}></Overlay>
 			</React.Fragment>
 		);
 	}

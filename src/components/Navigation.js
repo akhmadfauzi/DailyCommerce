@@ -11,7 +11,7 @@ class Navigation extends Component {
 				</ul>
 
 				<ul className="right">
-					<li><button className="nav-cart-open" data-cart-nav="open" onClick={this.props.onCartClick.bind(this)}><i className="fa fa-shopping-cart"></i> Cart {cartCount}</button></li>
+					<li><a href="/open-cart" className="nav-cart-open" data-cart-nav="open" onClick={this.props.onCartClickMenu.bind(this)}><i className="fa fa-shopping-cart"></i> Cart {cartCount}</a></li>
 				</ul>
 			</nav>
 		);

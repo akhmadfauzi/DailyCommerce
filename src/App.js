@@ -3,6 +3,7 @@ import './App.css';
 import ProductList from './components/ProductList';
 import Navigation from './components/Navigation';
 import Cart from './components/Cart';
+import ProductDetails from './components/ProductDetails';
 
 var productLink = 'https://api.jsonbin.io/b/5c8f06732d33133c40155809/9';
 var key = '$2a$10$Sv7oWDHBiXDaUnQ26ruN7.mxTX1YNwHa1n2pRqsuBmZ1FEqkm40bK';
@@ -13,7 +14,10 @@ class App extends Component {
 		this.state = { 
 			'products': null,
 			'openCart': false,
-			'cart':[]
+			'cartItems':[],
+			'productDetail': null,
+			'openProduct':false,
+			'cartSlide':false
 		};
 		this.getProducts(this.state);
 	}
@@ -42,7 +46,7 @@ class App extends Component {
 				localStorage.setItem('products', JSON.stringify(products));
 			});
 		}else{
-			state.products = JSON.parse(localStore).slice(0,8);
+			state.products = JSON.parse(localStore).slice(0,16);
 			// self.setState({ 'products': JSON.parse(localStore) });
 		}
 		
@@ -50,14 +54,14 @@ class App extends Component {
 
 	addToCartHandler(item){
 		let temp=[];
-		let currentCart = this.state.cart;
-		var product = this.findById(item);
+		let currentCart = this.state.cartItems;
+		var product = this.findProductById(item);
 		if(!currentCart.length){
 			temp.push(product);			
-			this.setState({'cart': temp});
+			this.setState({'cartItems': temp});
 		}else{
 			currentCart.push(product);	
-			this.setState({'cart': currentCart});		
+			this.setState({'cartItems': currentCart});		
 		}
 	}
 
@@ -65,7 +69,7 @@ class App extends Component {
 
 	}
 
-	findById(id){
+	findProductById(id){
 		var products = this.state.products;
 		for (let i = 0; i < products.length; i++) {
 			if(products[i].id === id){
@@ -76,21 +80,36 @@ class App extends Component {
 		return null;
 	}		
 
-	onCartCloseHandler(e){
+	onCartMenuClickHandler(e){
+		e.preventDefault();
 		let target = e.target;
 		if(target.dataset.cartNav === 'open'){
 			this.setState({'openCart':true});
 			document.body.className = 'modal-open';
+			setTimeout((self)=>{
+				self.setState({'cartSlide':true});
+			},200,this);		
 		}else{
-			this.setState({'openCart':false});
+			this.setState({'openCart':false,'cartSlide':false});
 			document.body.className = '';
+			
 		}
-		
 	}
-	
+
+	onProductClickHandler(e){
+		e.preventDefault();
+		let target = e.target;
+		let data = target.dataset;
+		let product = this.findProductById(data.id);
+		this.setState({'openProduct':true});
+		document.body.className = 'modal-open';
+
+		console.log(product.name);
+	}	
 
 	render() {
 		let products = this.state.products ? this.state.products : null;
+		
 		if (!products) {
 			return (
 				<div className="App">
@@ -98,20 +117,30 @@ class App extends Component {
 				</div>
 			);
 		} else {
+			const isDetail = this.state.openProduct ? true : false;
+			
+			let detail = isDetail ? (<ProductDetails openProduct={this.state.openProduct}></ProductDetails>) : '';
+			let cart = this.state.openCart ? (
+				<Cart 
+						selectedProducts={this.state.cartItems}
+						onCartClose={this.onCartMenuClickHandler.bind(this)} 
+						openCart={this.state.openCart}
+						cartSlide={this.state.cartSlide}>
+					</Cart>
+			) : '';
+
 			return (
 				<React.Fragment>
-					<Navigation onCartClick={this.onCartCloseHandler.bind(this)} cart={this.state.cart}></Navigation>
-					<Cart 
-						selectedProducts={this.state.cart}
-						onCartClose={this.onCartCloseHandler.bind(this)} 
-						openCart={this.state.openCart}>
-					</Cart>
+					<Navigation onCartClickMenu={this.onCartMenuClickHandler.bind(this)} cart={this.state.cartItems}></Navigation>
+					{cart}
 					<div className="App">
 						<ProductList 
 							products={products} 
-							addToCart={this.addToCartHandler.bind(this)}>
+							addToCart={this.addToCartHandler.bind(this)}
+							onProductClick={this.onProductClickHandler.bind(this)}>
 						</ProductList>
 					</div>
+					{detail}
 				</React.Fragment>
 			);
 		}

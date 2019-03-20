@@ -27,6 +27,15 @@ body{
 	margin: 0 auto;
 	padding-top:60px;	
 
+	a{
+		text-decoration: none;
+		color: #1A1924;
+		
+		&:hover,&:visited{
+			text-decoration: none;
+		}
+	}
+
 	@media only screen and (min-width: 768px) and (max-width: 991px){  
 		width: 735px;
 	}
@@ -149,7 +158,8 @@ body{
 			list-style-type: none;
 			display: inline;
 			color: $blackFrog;
-
+			margin: 0;
+			padding: 0;
 			// a
 			a{
 				padding: 15px 20px;
@@ -196,24 +206,34 @@ body{
 
 .nav-cart-open{
 	position: relative;	
-}
+	border: none;
+	background: transparent;
 
-.nav-cart-open > *{
-	pointer-events: none;
+	&:hover,&:focus{
+		text-decoration: none;
+	}
+
+	& > *{
+		pointer-events: none;
+	}
 }
 
 // CART
 .cart-overlay{
-	display: none; 
+	display: none;
 }
 .cart-overlay-show{
 	display: block;
+	opacity: .5;
 
 }
-
-.cart-show{
+.cart-in{
 	right: 0 !important;
-
+}
+.cart-show{
+	right: -300px;
+	transition: right .2s ease-in;
+	display: block !important;
 	@media only screen and (min-width: 320px) and (max-width: 479px){  
 		right: 100%;
 	}
@@ -226,8 +246,9 @@ body{
 	background: #fff;
 	z-index: 1000;
 	position: fixed;
-	right: -300px;
-	transition: right .2s linear;
+	display: none;
+	
+	// overflow-x: auto;
 
 	header,footer{
 		height: 50px;
@@ -264,9 +285,7 @@ body{
 	@media only screen and (min-width: 320px) and (max-width: 479px){  
 		max-width: 100%;
 		width: 100%;
-
 		right: -100%;
-
 	}
 }
 
@@ -282,6 +301,7 @@ body{
 	opacity: .5;
 	z-index: 999;
 	padding-right:17px;
+	transition: opacity 1s linear;
 }
 
 .cart-list{
@@ -336,6 +356,24 @@ body{
 	padding: 0 15px;
 	margin: 5px;	
 }
+
+.btn-link{
+	display: block;
+	font-weight: bold;
+	font-size: .9em;
+	line-height: 1.2em;
+	background: transparent;
+	border: none;
+	text-align: left;
+	
+	&:hover{
+		text-decoration: none;
+		cursor: pointer;
+		color: $aquaPale;
+	}
+}
+
+
 
 .btn-block{
 	width: 290px;
