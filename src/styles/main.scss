@@ -15,7 +15,8 @@ body{
 
 .modal-open{
 	overflow: hidden;
-	padding-right: 17px;
+	// padding-right: 17px;
+	width: 100%;
 	@media only screen and (min-width: 320px) and (max-width: 479px){  
 		padding-right: 0;
 	}
@@ -49,14 +50,33 @@ body{
 	}
 }
 
+.search-bar{
+	width: 100%;
+	input{
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		padding: 5px;
+		width: 910px;
+		margin: 15px;
+
+	}
+}
+
 .item{
-	max-width: 198px;
+	width: 198px;
 	float: left;
 	border: 1px solid #ccc;
 	overflow: hidden;
-	margin: 20px;
-	
+	margin: 15px;
+	padding: 5px;
 
+	a{
+		display: block;
+		transition: color .1s linear;
+		&:hover{
+			color: $aquaPale
+		}
+	}
 
 	@media only screen and (min-width: 320px) and (max-width: 479px){  
 		margin: 2%;
@@ -120,18 +140,35 @@ body{
 		margin-left:3px;
 	}
 }
-
-.add-to-cart{
-	background: $aquaPale;
-	color:$cream;
-	border: none;
-	width: 188px;
+.button{
+	color:#fff;
+	border: 1px solid #ccc;
+	color: #000;
+	width: auto;
 	height: 30px;
-	padding: 5px;
-	margin: 5px;
+	padding: 0 10px;
 	font-weight: bold;
 	cursor: pointer;
 	border-radius: 5px;
+	&:hover{
+		background: #e2e1e1;
+	}
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		max-width: 100%;
+		width: 98%;
+	}
+}
+
+.button-block{
+	width: 100%;
+}
+
+.button-primary{
+	background: $aquaPale;
+	color:#fff;
+	border: 1px solid $aquaPale;
+	
 	&:hover{
 		background: #6d8e92;
 	}
@@ -314,10 +351,6 @@ body{
 	font-weight: bold;	
 }
 
-.cart-qty{
-	
-}
-
 .cart-item-name{
 	float: left;
 	margin-right:10px;
@@ -344,41 +377,106 @@ body{
 
 	}
 }
-
-// BUTTON
-.btn{
+.button-product-details{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background: red;
 	display: block;
-	background: $blueFrog;
-	border: none;
-	border-radius:5px;
-	height: 40px;
-	color:$cream;
-	padding: 0 15px;
-	margin: 5px;	
+	width: 100%;
+}
+.detail-body{
+	margin: 20px 0;
+	padding: 10px;
+	border-radius: 5px;
+	background: #fff;
 }
 
-.btn-link{
+.product-images{
+	min-width: 600px;
+	min-height: 600px;
+	max-width: 600px;
+	max-height: 600px;
+	height: auto;
+	overflow: hidden;
+	float: left;
 	display: block;
-	font-weight: bold;
-	font-size: .9em;
-	line-height: 1.2em;
-	background: transparent;
-	border: none;
-	text-align: left;
-	
-	&:hover{
-		text-decoration: none;
-		cursor: pointer;
-		color: $aquaPale;
+	border-radius: 5px;
+
+
+	img{
+		max-width: inherit;
+		min-width: inherit;
+		min-height:inherit;
+		
 	}
 }
 
+.call-to-action{
+	display: block;
+	float: right;
+	width: 320px;
+	padding: 10px;
 
-
-.btn-block{
-	width: 290px;
-	
-	@media only screen and (min-width: 320px) and (max-width: 479px){  
-		width: 97%;
+	.product-price{
+		font-size: 1.5em;
+		font-weight: bold;
+		color: orangered;
 	}
+
+	.product-unit{
+		font-size: .8em;
+		color:#000;
+	}
+}
+.description{
+	font-size: 1em;
+	
+}
+.product-details{
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	position: fixed;
+	margin: 0 auto;
+	overflow: auto;
+	z-index: 1001;
+	width: 960px;
+	
+}
+
+.title{
+	padding: 0;
+	margin: 0;
+	font-size: 1.2em
+}
+
+// loading
+
+.loading{
+	display: block;
+	margin: auto auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: fixed;
+	
+}
+
+.loading-background{
+	padding: 50px;
+	background: #fff;
+	border-radius: 10px;
+	position: fixed;
+	margin: auto auto;
+
+	max-width: 76px;
+	max-height: 76px;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1001;
 }

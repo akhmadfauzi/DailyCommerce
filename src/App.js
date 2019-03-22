@@ -17,15 +17,18 @@ class App extends Component {
 			'cartItems':[],
 			'productDetail': null,
 			'openProduct':false,
-			'cartSlide':false
+			'cartSlide':false,
+			'imageLoaded': false
 		};
-		this.getProducts(this.state);
+		this.getProducts = this.getProducts.bind(this);
 	}
 
 	componentDidMount() {
+		this.getProducts();
 	}
 
-	getProducts(state) {
+	getProducts() {
+		let self = this;
 		var localStore = localStorage.getItem('products');
 		if(!localStore){
 			fetch(productLink, {
@@ -41,13 +44,17 @@ class App extends Component {
 				return response.json();
 			})
 			.then(function (products) {
-				state.products = products;
+				console.log('Success');
 				// self.setState({ 'products': products });
 				localStorage.setItem('products', JSON.stringify(products));
+				self.setState({
+					'products':products
+				})
 			});
 		}else{
-			state.products = JSON.parse(localStore).slice(0,16);
-			// self.setState({ 'products': JSON.parse(localStore) });
+			self.setState({
+				'products':JSON.parse(localStore).slice(0,16)
+			})
 		}
 		
 	}
@@ -68,6 +75,8 @@ class App extends Component {
 	checkDuplication(){
 
 	}
+
+	
 
 	findProductById(id){
 		var products = this.state.products;
@@ -101,11 +110,27 @@ class App extends Component {
 		let target = e.target;
 		let data = target.dataset;
 		let product = this.findProductById(data.id);
-		this.setState({'openProduct':true});
+		this.setState({'openProduct':true,'productDetail':product});
 		document.body.className = 'modal-open';
 
 		console.log(product.name);
 	}	
+
+	overlayClickHandler(e){
+		// let target = e.target;
+		this.setState({'openProduct':false,'imageLoaded':false});
+		document.body.className = '';
+
+	}
+
+	checkImageHandler(e){
+		if(e.target.src){
+			this.setState({'imageLoaded':true});
+		}else{
+			console.log('wait a moment');
+		}
+	}
+
 
 	render() {
 		let products = this.state.products ? this.state.products : null;
@@ -118,15 +143,14 @@ class App extends Component {
 			);
 		} else {
 			const isDetail = this.state.openProduct ? true : false;
-			
-			let detail = isDetail ? (<ProductDetails openProduct={this.state.openProduct}></ProductDetails>) : '';
+			let detail = isDetail ? (<ProductDetails imageLoaded={this.state.imageLoaded} checkImage={this.checkImageHandler.bind(this)} overlayClick={this.overlayClickHandler.bind(this)} openProduct={this.state.openProduct} product={this.state.productDetail}></ProductDetails>) : '';
 			let cart = this.state.openCart ? (
 				<Cart 
-						selectedProducts={this.state.cartItems}
-						onCartClose={this.onCartMenuClickHandler.bind(this)} 
-						openCart={this.state.openCart}
-						cartSlide={this.state.cartSlide}>
-					</Cart>
+					selectedProducts={this.state.cartItems}
+					onCartClose={this.onCartMenuClickHandler.bind(this)} 
+					openCart={this.state.openCart}
+					cartSlide={this.state.cartSlide}>
+				</Cart>
 			) : '';
 
 			return (
@@ -134,6 +158,9 @@ class App extends Component {
 					<Navigation onCartClickMenu={this.onCartMenuClickHandler.bind(this)} cart={this.state.cartItems}></Navigation>
 					{cart}
 					<div className="App">
+						{/* <div className="search-bar">
+							<input type="text" name="" id="" placeholder="Search product"/>
+						</div> */}
 						<ProductList 
 							products={products} 
 							addToCart={this.addToCartHandler.bind(this)}

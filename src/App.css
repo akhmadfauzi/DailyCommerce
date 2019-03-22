@@ -4,7 +4,7 @@ body {
 
 .modal-open {
   overflow: hidden;
-  padding-right: 17px;
+  width: 100%;
 }
 @media only screen and (min-width: 320px) and (max-width: 479px) {
   .modal-open {
@@ -41,12 +41,31 @@ body {
   }
 }
 
+.search-bar {
+  width: 100%;
+}
+.search-bar input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  width: 910px;
+  margin: 15px;
+}
+
 .item {
-  max-width: 198px;
+  width: 198px;
   float: left;
   border: 1px solid #ccc;
   overflow: hidden;
-  margin: 20px;
+  margin: 15px;
+  padding: 5px;
+}
+.item a {
+  display: block;
+  transition: color 0.1s linear;
+}
+.item a:hover {
+  color: #7EA5A9;
 }
 @media only screen and (min-width: 320px) and (max-width: 479px) {
   .item {
@@ -111,23 +130,41 @@ body {
   margin-left: 3px;
 }
 
-.add-to-cart {
-  background: #7EA5A9;
-  color: #DDDCCE;
-  border: none;
-  width: 188px;
+.button {
+  color: #fff;
+  border: 1px solid #ccc;
+  color: #000;
+  width: auto;
   height: 30px;
-  padding: 5px;
-  margin: 5px;
+  padding: 0 10px;
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;
 }
-.add-to-cart:hover {
+.button:hover {
+  background: #e2e1e1;
+}
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  .button {
+    max-width: 100%;
+    width: 98%;
+  }
+}
+
+.button-block {
+  width: 100%;
+}
+
+.button-primary {
+  background: #7EA5A9;
+  color: #fff;
+  border: 1px solid #7EA5A9;
+}
+.button-primary:hover {
   background: #6d8e92;
 }
 @media only screen and (min-width: 320px) and (max-width: 479px) {
-  .add-to-cart {
+  .button-primary {
     max-width: 100%;
     width: 98%;
   }
@@ -316,39 +353,100 @@ body {
   cursor: pointer;
 }
 
-.btn {
+.button-product-details {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: red;
   display: block;
-  background: #5585BC;
-  border: none;
+  width: 100%;
+}
+
+.detail-body {
+  margin: 20px 0;
+  padding: 10px;
   border-radius: 5px;
-  height: 40px;
-  color: #DDDCCE;
-  padding: 0 15px;
-  margin: 5px;
+  background: #fff;
 }
 
-.btn-link {
+.product-images {
+  min-width: 600px;
+  min-height: 600px;
+  max-width: 600px;
+  max-height: 600px;
+  height: auto;
+  overflow: hidden;
+  float: left;
   display: block;
-  font-weight: bold;
-  font-size: 0.9em;
-  line-height: 1.2em;
-  background: transparent;
-  border: none;
-  text-align: left;
+  border-radius: 5px;
 }
-.btn-link:hover {
-  text-decoration: none;
-  cursor: pointer;
-  color: #7EA5A9;
+.product-images img {
+  max-width: inherit;
+  min-width: inherit;
+  min-height: inherit;
 }
 
-.btn-block {
-  width: 290px;
+.call-to-action {
+  display: block;
+  float: right;
+  width: 320px;
+  padding: 10px;
 }
-@media only screen and (min-width: 320px) and (max-width: 479px) {
-  .btn-block {
-    width: 97%;
-  }
+.call-to-action .product-price {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: orangered;
+}
+.call-to-action .product-unit {
+  font-size: 0.8em;
+  color: #000;
+}
+
+.description {
+  font-size: 1em;
+}
+
+.product-details {
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  margin: 0 auto;
+  overflow: auto;
+  z-index: 1001;
+  width: 960px;
+}
+
+.title {
+  padding: 0;
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.loading {
+  display: block;
+  margin: auto auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+}
+
+.loading-background {
+  padding: 50px;
+  background: #fff;
+  border-radius: 10px;
+  position: fixed;
+  margin: auto auto;
+  max-width: 76px;
+  max-height: 76px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1001;
 }
 
 /*# sourceMappingURL=App.css.map */
