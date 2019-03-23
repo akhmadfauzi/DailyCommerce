@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import Overlay from './Overlay';
 
 class ProductDetails extends Component {
-	checkImage(e){
-		let target =e.target;
-		
-	}	
+
+	cartBtnHandler(e){
+		var id = e.target.dataset.id;
+		this.props.addToCart(id);
+	}
 
 	componentDidMount(){
 		let image = new Image();
@@ -20,7 +21,7 @@ class ProductDetails extends Component {
 		if(!isImageready){
 			return (
 				<React.Fragment>
-					<div className="loading-background"><img src="./loading.gif" className="loading" /></div>
+					<div className="loading-background"><img src="./loading.gif" className="loading" alt="loading..." /></div>
 					<img src={product.image} alt={product.name} onLoad={this.props.checkImage}/>
 					<Overlay overlayClick={this.props.overlayClick} overlayClass={this.props.openProduct}></Overlay>
 				</React.Fragment>
@@ -29,19 +30,23 @@ class ProductDetails extends Component {
 			return (
 				<React.Fragment>
 					<div className="product-details">
+						<div className="detail-header">
+							<div className="button-modal-close"><i className="fa fa-times"></i></div>
+						</div>
 						<div className="detail-body">
+
 							<div className="product-images">
 								<img src={product.image} alt={product.name} onLoad={this.props.checkImage}/>
 							</div>
 							<div className="call-to-action">
 								<h1 className="title">{product.name}</h1>
 								<p> <span className="product-price">$ {product.price}</span> <span className="product-unit">/{product.unit}</span></p>
-								<button className="button button-primary button-block">Add to cart</button>
+								<button className="button button-primary button-block" onClick={this.cartBtnHandler.bind(this)} data-id={product.id}>Add to cart</button>
 							</div>
 							<p style={{clear:'both','margin':0,'padding':0}}>&nbsp;</p>
 							<div className="description">
-								<h3>Description</h3>
-								<div dangerouslySetInnerHTML={desc}></div>
+								<div className="header">Description</div>
+								<div className="body" dangerouslySetInnerHTML={desc}></div>
 							</div>
 						</div>
 					</div>

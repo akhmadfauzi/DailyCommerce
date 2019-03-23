@@ -21,6 +21,9 @@ class App extends Component {
 			'imageLoaded': false
 		};
 		this.getProducts = this.getProducts.bind(this);
+		this.onProductClickHandler = this.onProductClickHandler.bind(this);
+		this.overlayClickHandler = this.overlayClickHandler.bind(this);
+		this.addToCartHandler = this.addToCartHandler.bind(this);
 	}
 
 	componentDidMount() {
@@ -53,7 +56,7 @@ class App extends Component {
 			});
 		}else{
 			self.setState({
-				'products':JSON.parse(localStore).slice(0,16)
+				'products':JSON.parse(localStore)//.slice(0,16)
 			})
 		}
 		
@@ -91,13 +94,14 @@ class App extends Component {
 
 	onCartMenuClickHandler(e){
 		e.preventDefault();
+		console.log(this.state.cartItems);
 		let target = e.target;
 		if(target.dataset.cartNav === 'open'){
 			this.setState({'openCart':true});
 			document.body.className = 'modal-open';
 			setTimeout((self)=>{
 				self.setState({'cartSlide':true});
-			},200,this);		
+			},150,this);		
 		}else{
 			this.setState({'openCart':false,'cartSlide':false});
 			document.body.className = '';
@@ -112,13 +116,15 @@ class App extends Component {
 		let product = this.findProductById(data.id);
 		this.setState({'openProduct':true,'productDetail':product});
 		document.body.className = 'modal-open';
-
-		console.log(product.name);
 	}	
 
 	overlayClickHandler(e){
-		// let target = e.target;
-		this.setState({'openProduct':false,'imageLoaded':false});
+		this.setState({
+			'openProduct':false,
+			'openCart':false,
+			'cartSlide':false,
+			'imageLoaded':false
+		});
 		document.body.className = '';
 
 	}
@@ -143,12 +149,21 @@ class App extends Component {
 			);
 		} else {
 			const isDetail = this.state.openProduct ? true : false;
-			let detail = isDetail ? (<ProductDetails imageLoaded={this.state.imageLoaded} checkImage={this.checkImageHandler.bind(this)} overlayClick={this.overlayClickHandler.bind(this)} openProduct={this.state.openProduct} product={this.state.productDetail}></ProductDetails>) : '';
+			let detail = isDetail ? (
+			<ProductDetails 
+				imageLoaded={this.state.imageLoaded} 
+				checkImage={this.checkImageHandler.bind(this)} 
+				overlayClick={this.overlayClickHandler} 
+				openProduct={this.state.openProduct} 
+				product={this.state.productDetail}
+				addToCart={this.addToCartHandler}>
+			</ProductDetails>) : '';
 			let cart = this.state.openCart ? (
 				<Cart 
 					selectedProducts={this.state.cartItems}
 					onCartClose={this.onCartMenuClickHandler.bind(this)} 
 					openCart={this.state.openCart}
+					overlayClick={this.overlayClickHandler}
 					cartSlide={this.state.cartSlide}>
 				</Cart>
 			) : '';
@@ -163,8 +178,8 @@ class App extends Component {
 						</div> */}
 						<ProductList 
 							products={products} 
-							addToCart={this.addToCartHandler.bind(this)}
-							onProductClick={this.onProductClickHandler.bind(this)}>
+							addToCart={this.addToCartHandler}
+							onProductClick={this.onProductClickHandler}>
 						</ProductList>
 					</div>
 					{detail}

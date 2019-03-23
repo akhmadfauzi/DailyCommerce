@@ -20,10 +20,10 @@ class Cart extends Component {
 						<CartList selectedProducts={this.props.selectedProducts}></CartList>
 					</article>
 					<footer>
-						<button className="btn btn-primary btn-block">Checkout</button>
+						<button className="button button-primary button-block button-checkout">Checkout</button>
 					</footer>
 				</div>
-				<Overlay overlayClass={cartOverlayClass}></Overlay>
+				<Overlay overlayClass={cartOverlayClass} overlayClick={this.props.overlayClick}></Overlay>
 			</React.Fragment>
 		);
 	}
