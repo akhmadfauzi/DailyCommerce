@@ -4,6 +4,8 @@ import ProductList from './components/ProductList';
 import Navigation from './components/Navigation';
 import Cart from './components/Cart';
 import ProductDetails from './components/ProductDetails';
+import SearchBar from './components/SearchBar';
+import Pagination from './components/Pagination';
 
 var productLink = 'https://api.jsonbin.io/b/5c8f06732d33133c40155809/9';
 var key = '$2a$10$Sv7oWDHBiXDaUnQ26ruN7.mxTX1YNwHa1n2pRqsuBmZ1FEqkm40bK';
@@ -18,16 +20,34 @@ class App extends Component {
 			'productDetail': null,
 			'openProduct':false,
 			'cartSlide':false,
-			'imageLoaded': false
+			'imageLoaded': false,
+			'filteredProducts': null,
+			'pagination': null
 		};
 		this.getProducts = this.getProducts.bind(this);
 		this.onProductClickHandler = this.onProductClickHandler.bind(this);
 		this.overlayClickHandler = this.overlayClickHandler.bind(this);
 		this.addToCartHandler = this.addToCartHandler.bind(this);
+		this.onSearchHandler = this.onSearchHandler.bind(this);
 	}
 
 	componentDidMount() {
 		this.getProducts();
+	}
+
+	onSearchHandler(e){
+		let target = e.target;
+		let key = e.which;
+		if(key === 13){
+			
+			let filtered = this.findProductByQuery(target.value);
+			if(target.value){
+				this.setState({'filteredProducts':filtered});
+			}else{
+				this.setState({'filteredProducts': null});
+			}
+			
+		}
 	}
 
 	getProducts() {
@@ -51,12 +71,15 @@ class App extends Component {
 				// self.setState({ 'products': products });
 				localStorage.setItem('products', JSON.stringify(products));
 				self.setState({
-					'products':products
+					'products':products,
+					'pagination': Math.ceil(Math.floor(products.length/16))
 				})
 			});
 		}else{
+			let products = JSON.parse(localStore).slice(0,16);
 			self.setState({
-				'products':JSON.parse(localStore)//.slice(0,16)
+				'products':products,
+				'pagination': Math.ceil(Math.floor(products.length/16))
 			})
 		}
 		
@@ -79,7 +102,19 @@ class App extends Component {
 
 	}
 
-	
+	findProductByQuery(query){
+		let products = this.state.products;
+		let filtered = [];
+		if(query){
+			for (let i = 0; i < products.length; i++) {
+				let reg = RegExp(query,'gi');
+				if(products[i].name.match(reg)){
+					filtered.push(products[i]);
+				}
+			}
+		}
+		return filtered;
+	}
 
 	findProductById(id){
 		var products = this.state.products;
@@ -88,7 +123,6 @@ class App extends Component {
 				return products[i];
 			}
 		}
-
 		return null;
 	}		
 
@@ -139,7 +173,7 @@ class App extends Component {
 
 
 	render() {
-		let products = this.state.products ? this.state.products : null;
+		let products = this.state.filteredProducts ? this.state.filteredProducts : (this.state.products ? this.state.products : null);
 		
 		if (!products) {
 			return (
@@ -173,15 +207,14 @@ class App extends Component {
 					<Navigation onCartClickMenu={this.onCartMenuClickHandler.bind(this)} cart={this.state.cartItems}></Navigation>
 					{cart}
 					<div className="App">
-						{/* <div className="search-bar">
-							<input type="text" name="" id="" placeholder="Search product"/>
-						</div> */}
+						<SearchBar onSearch={this.onSearchHandler}></SearchBar>
 						<ProductList 
 							products={products} 
 							addToCart={this.addToCartHandler}
 							onProductClick={this.onProductClickHandler}>
 						</ProductList>
 					</div>
+					<Pagination perpage="8" adjacent="3" totalPages={this.state.pagination} ></Pagination>
 					{detail}
 				</React.Fragment>
 			);

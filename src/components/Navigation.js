@@ -6,13 +6,15 @@ class Navigation extends Component {
 		const cartCount = cart.length > 0 ? (<span className="badge">{cart.length}</span>) : '';
 		return (
 			<nav className="nav">
-				<ul className="left">
-					<li>Swalon</li>
-				</ul>
+				<div className="nav-items">
+					<ul className="left">
+						<li>Swalon</li>
+					</ul>
 
-				<ul className="right">
-					<li><a href="/open-cart" className="nav-cart-open" data-cart-nav="open" onClick={this.props.onCartClickMenu.bind(this)}><i className="fa fa-shopping-cart"></i> Cart {cartCount}</a></li>
-				</ul>
+					<ul className="right">
+						<li><a href="/open-cart" className="nav-cart-open" data-cart-nav="open" onClick={this.props.onCartClickMenu.bind(this)}><i className="fa fa-shopping-cart"></i> Cart {cartCount}</a></li>
+					</ul>
+				</div>
 			</nav>
 		);
 	}

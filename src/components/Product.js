@@ -8,9 +8,16 @@ class Product extends Component {
 	}
 
 	checkLoadedImage(e){
-		if(e.target.src){
-			
-		}
+		
+		// var img = new Image();
+		// img.src = e.target.src;
+		// img.onload = function(e){
+		// }
+		// if(e.target.src){
+		// 	e.target.src = e.target.src;
+		// }else{
+		// 	e.target.src = './losfing.gif';
+		// }
 	}
 
 	render() {
@@ -19,8 +26,8 @@ class Product extends Component {
 		const productLink = '/product/'+ slug;
 		const details = (
 			<div className="item" >
-				{/* <div><img className="image" data-id={detail.id} onClick={this.props.onProductClick} src={detail.image} alt={detail.name} onLoad={this.checkLoadedImage.bind(this)}/></div> */}
-				<div className="image" data-id={detail.id} onClick={this.props.onProductClick}></div>
+				<div><img className="image" data-id={detail.id} onClick={this.props.onProductClick} src={detail.image} alt={detail.name} onLoad={this.checkLoadedImage.bind(this)}/></div>
+				{/* <div className="image" data-id={detail.id} onClick={this.props.onProductClick}></div> */}
 				<div className="name"><a href={productLink} onClick={this.props.onProductClick} alt={detail.name} title={detail.name} data-id={detail.id}>{detail.name}</a></div>
 					<div className="price"><span>{detail.price}</span> <span>/{detail.unit}</span></div>				
 					<button className="button button-primary button-block" data-id={detail.id} onClick={this.cartBtnHandler.bind(this)}>Add to cart</button>

@@ -46,15 +46,35 @@ body {
   }
 }
 
+.pagination {
+  width: 960px;
+  margin: 0 auto 20px auto;
+  text-align: center;
+}
+.pagination ul {
+  padding: 0;
+  margin: 0;
+}
+.pagination ul li {
+  display: inline-block;
+  padding: 5px;
+  background: #5585BC;
+  width: 20px;
+  height: 20px;
+}
+
 .search-bar {
-  width: 100%;
+  padding: 0 15px;
+  position: relative;
+  overflow: hidden;
+  width: 930px;
 }
 .search-bar input {
   border: 1px solid #ccc;
+  width: 908px;
+  padding: 10px;
+  font-weight: bold;
   border-radius: 5px;
-  padding: 5px;
-  width: 910px;
-  margin: 15px;
 }
 
 .item {
@@ -64,6 +84,7 @@ body {
   overflow: hidden;
   margin: 15px;
   padding: 5px;
+  border-radius: 5px;
 }
 .item a {
   font-size: 1.2em;
@@ -111,7 +132,8 @@ body {
 }
 @media only screen and (min-width: 320px) and (max-width: 479px) {
   .item .image {
-    width: 92%;
+    width: 100%;
+    height: auto;
   }
 }
 
@@ -177,7 +199,7 @@ body {
 .nav {
   width: 100%;
   height: 50px;
-  background: #ccc;
+  background: #7EA5A9;
   display: block;
   line-height: 50px;
   position: fixed;
@@ -191,7 +213,7 @@ body {
 .nav ul li {
   list-style-type: none;
   display: inline-block;
-  color: #1A1924;
+  color: #fff;
   margin: 0;
   padding: 0;
   line-height: 50px;
@@ -204,11 +226,11 @@ body {
 }
 .nav ul li a:visited, .nav ul li a:link {
   text-decoration: none;
-  color: #1A1924;
+  color: #fff;
 }
 .nav ul li a:hover {
   background: #7EA5A9;
-  color: #DDDCCE;
+  color: #fff;
 }
 .nav .left {
   margin-left: 20px;
@@ -217,6 +239,26 @@ body {
 }
 .nav .right {
   float: right;
+}
+.nav .nav-items {
+  width: 960px;
+  display: block;
+  margin: 0 auto;
+}
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  .nav .nav-items {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .nav .nav-items {
+    width: 735px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .nav .nav-items {
+    width: 480px;
+  }
 }
 
 .badge {
@@ -389,15 +431,18 @@ body {
 
 .button-modal-close {
   position: absolute;
-  bottom: 0;
+  top: 0;
+  right: 0;
   width: 30px;
   height: 30px;
-  border-radius: 20px;
-  border: 1px solid #000;
+  border-radius: 3px;
+  border: 2px solid #fff;
+  color: #1A1924;
   background: #fff;
   text-align: center;
   line-height: 30px;
   z-index: 1001;
+  cursor: pointer;
 }
 
 .detail-header {
@@ -413,12 +458,17 @@ body {
   background: #fff;
   position: relative;
 }
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  .detail-body {
+    margin: 10px 0;
+  }
+}
 
 .product-images {
-  min-height: 600px;
-  max-width: 600px;
-  max-height: 600px;
-  height: 600px;
+  min-height: 570px;
+  max-width: 570px;
+  max-height: 570px;
+  height: 570px;
   width: auto;
   overflow: hidden;
   float: left;
@@ -433,6 +483,14 @@ body {
     max-width: 100%;
   }
 }
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .product-images img {
+    min-height: 400px;
+    max-width: 400px;
+    height: 400px;
+    width: auto;
+  }
+}
 @media only screen and (min-width: 320px) and (max-width: 479px) {
   .product-images {
     width: 100%;
@@ -440,11 +498,19 @@ body {
     height: 320px;
   }
 }
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .product-images {
+    min-height: 400px;
+    max-width: 400px;
+    height: 400px;
+    width: auto;
+  }
+}
 
 .call-to-action {
   display: block;
   float: right;
-  width: 320px;
+  width: 280px;
   padding: 10px;
 }
 .call-to-action .product-price {
@@ -463,6 +529,12 @@ body {
     float: none;
   }
 }
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .call-to-action {
+    width: 160px;
+    padding: 10px;
+  }
+}
 
 .description {
   font-size: 1em;
@@ -470,6 +542,10 @@ body {
   border-radius: 5px;
   position: relative;
   overflow: hidden;
+}
+.description ul {
+  padding: 30px;
+  margin: 0 auto;
 }
 .description .header {
   padding: 10px;
@@ -481,6 +557,7 @@ body {
 .description .body {
   display: block;
   width: 100%;
+  padding: 5px;
 }
 
 .product-details {
@@ -492,12 +569,17 @@ body {
   margin: 0 auto;
   overflow: auto;
   z-index: 1001;
-  width: 960px;
+  width: 900px;
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .product-details {
+    width: 600px;
+  }
 }
 @media only screen and (min-width: 320px) and (max-width: 479px) {
   .product-details {
-    width: 92%;
-    top: 10px;
+    width: 95%;
+    padding: 0;
   }
 }
 
