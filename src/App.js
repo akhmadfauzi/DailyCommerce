@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './styles/dist/App.css';
 import ProductList from './components/ProductList';
 import Navigation from './components/Navigation';
 import Cart from './components/Cart';

@@ -30,7 +30,6 @@ class ProductDetails extends Component {
 			return (
 				<React.Fragment>
 					<div className="product-details">
-						
 						<div className="detail-body">
 							<div className="button-modal-close" onClick={this.props.overlayClick}><i className="fa fa-times"></i></div>
 							<div className="product-images">

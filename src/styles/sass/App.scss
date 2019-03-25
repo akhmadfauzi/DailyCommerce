@@ -17,7 +17,7 @@ body{
 .modal-open{
 	overflow: hidden;
 	position: relative;
-	// padding-right: 17px;
+	padding-right: 17px;
 	width: 100%;
 	@media only screen and (min-width: 320px) and (max-width: 479px){  
 		padding-right: 0;
@@ -620,7 +620,7 @@ body{
 	margin: 0 auto;
 	overflow: auto;
 	z-index: 1001;
-	width: 900px;
+	width: 917px;
 
 	@media only screen and (min-width: 768px) and (max-width: 991px){  
 		width: 600px;
@@ -670,3 +670,4 @@ body{
 	left: 0;
 	z-index: 1001;
 }
+
