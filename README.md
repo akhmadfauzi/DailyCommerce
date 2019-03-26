@@ -1,4 +1,10 @@
-## posm8
-posm8 is a super simple point of sale based on react.js 
 
-Still work in progress
+## DailyCommerce
+
+Is an extremely simple ecommerce that supplies daily needs products such as vegetables, fruit, dairy and many more.
+
+## Technology 
+
+ - Javascript
+ - React.js
+ - SASS
