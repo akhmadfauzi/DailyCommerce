@@ -87,7 +87,7 @@ body {
   line-height: 50px;
   position: fixed;
   z-index: 3;
-  border-bottom: 1px solid #b3b3b3;
+  border-bottom: 1.5px solid #6c8d91;
 }
 .nav ul {
   padding: 0;

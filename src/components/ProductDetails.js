@@ -16,7 +16,7 @@ class ProductDetails extends Component {
 		image.onloadedmetadata = this.props.checkImage;
 	}
 	onImageClick(e){
-		alert(e.target.src);
+		// alert(e.target.src);
 	}
 	render() {
 		const product = this.props.product;
