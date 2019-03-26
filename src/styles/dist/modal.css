@@ -1,0 +1,134 @@
+.modal-open .modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.modal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .modal {
+    width: 735px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  .modal {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .modal {
+    width: 480px;
+  }
+}
+
+.in {
+  opacity: 1 !important;
+}
+
+.modal-dialog {
+  width: 900px;
+  margin: 20px auto;
+  position: relative;
+  opacity: 0;
+  z-index: 1000;
+  transition: opacity 0.2s ease-in;
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .modal-dialog {
+    width: 735px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  .modal-dialog {
+    width: 95%;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .modal-dialog {
+    width: 480px;
+  }
+}
+
+.modal-content {
+  background: #fff;
+  position: relative;
+  width: inherit;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .modal-content {
+    width: 735px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  .modal-content {
+    width: 95%;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .modal-content {
+    width: 480px;
+  }
+}
+
+.modal-footer, .modal-body, .modal-header {
+  padding: 10px;
+}
+
+.modal-header {
+  height: 30px;
+  font-weight: bold;
+  border-bottom: 1px solid #e9e8e8;
+  line-height: 30px;
+  display: block;
+}
+
+.modal-footer {
+  height: 30px;
+  font-weight: bold;
+  border-top: 1px solid #ccc;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.5;
+  z-index: 99;
+}
+
+.modal-close {
+  display: none !important;
+}
+
+.button-modal-close {
+  position: absolute;
+  top: 7.5px;
+  right: 7.5px;
+  width: 33px;
+  height: 33px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  color: #1A1924;
+  background: #fff;
+  text-align: center;
+  line-height: 33px;
+  z-index: 1001;
+  cursor: pointer;
+}
+.button-modal-close i {
+  pointer-events: none;
+}
+
+/*# sourceMappingURL=modal.css.map */

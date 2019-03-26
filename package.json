@@ -13,7 +13,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "gantengin": "sass --watch ./src/styles/main.scss:./src/App.css"
+    "gantengin": "sass --watch ./src/styles/sass/App.scss:./src/styles/dist/App.css"
   },
   "eslintConfig": {
     "extends": "react-app"

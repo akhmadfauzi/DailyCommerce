@@ -1,4 +1,6 @@
+
 import React, { Component } from 'react';
+import '../styles/dist/detail.css';
 import Overlay from './Overlay';
 
 class ProductDetails extends Component {
@@ -23,31 +25,31 @@ class ProductDetails extends Component {
 				<React.Fragment>
 					<div className="loading-background"><img src="./loading.gif" className="loading" alt="loading..." /></div>
 					<img src={product.image} alt={product.name} onLoad={this.props.checkImage}/>
-					<Overlay overlayClick={this.props.overlayClick} overlayClass={this.props.openProduct}></Overlay>
 				</React.Fragment>
 			)
 		}else{
 			return (
 				<React.Fragment>
-					<div className="product-details">
-						<div className="detail-body">
-							<div className="button-modal-close" onClick={this.props.overlayClick}><i className="fa fa-times"></i></div>
-							<div className="product-images">
-								<img src={product.image} alt={product.name} onLoad={this.props.checkImage}/>
-							</div>
-							<div className="call-to-action">
-								<h1 className="title">{product.name}</h1>
-								<p> <span className="product-price">$ {product.price}</span> <span className="product-unit">/{product.unit}</span></p>
-								<button className="button button-primary button-block" onClick={this.cartBtnHandler.bind(this)} data-id={product.id}>Add to cart</button>
-							</div>
-							<p style={{clear:'both','margin':0,'padding':0}}>&nbsp;</p>
-							<div className="description">
-								<div className="header">Description</div>
-								<div className="body" dangerouslySetInnerHTML={desc}></div>
+					<article className="details">
+						<div className="details-content">
+							<div className="details-body">
+								<div className="product-images">
+									<img src={product.image} alt={product.name} onLoad={this.props.checkImage}/>
+								</div>
+								<div className="call-to-action">
+									<h1 className="title">{product.name}</h1>
+									<p> <span className="product-price">$ {product.price}</span> <span className="product-unit">/{product.unit}</span></p>
+									<button className="button button-primary button-block" onClick={this.cartBtnHandler.bind(this)} data-id={product.id}>Add to cart</button>
+								</div>
+								<p style={{clear:'both','margin':0,'padding':0}}>&nbsp;</p>
+								<div className="description">
+									<div className="header">Description</div>
+									<div className="body" dangerouslySetInnerHTML={desc}></div>
+								</div>
 							</div>
 						</div>
-					</div>
-					<Overlay overlayClick={this.props.overlayClick} overlayClass={this.props.openProduct}></Overlay>
+					</article>
+					{/* <Overlay overlayClick={this.props.overlayClick} overlayClass={this.props.openProduct}></Overlay> */}
 				</React.Fragment>
 			);
 		}

@@ -1,0 +1,140 @@
+$cream : #DDDCCE;
+$bluePale : #A6BAC5;
+$aquaPale : #7EA5A9;
+$blueFrog : #5585BC;
+$blackFrog : #1A1924;
+$white : #fff;
+
+// CART
+.cart-overlay{
+	display: none;
+}
+.cart-overlay-show{
+	display: block;
+	opacity: .5;
+
+}
+
+.cart-in{
+	right: 0 !important;
+}
+.cart-show{
+	transition: right .2s ease-in;
+	display: block !important;
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		right: 100%;
+	}
+}
+
+.cart{
+	width: 300px;
+	// height: 100%;
+	background: $white;
+	z-index: 1000;
+	position: fixed;
+	display: none;
+	top: 0;
+	right: -300px;
+	height: 100%;
+	// overflow-x: auto;
+
+	header,footer{
+		height: 50px;
+		width: 100%;
+		// background: #A6BAC5;
+	}
+	header{
+		border-bottom: 1px solid #ccc;
+
+		.cart-close{
+			float: right;
+			top: 0;
+			right: 0;
+			border:none;
+			height: 50px;			
+			width: 50px;			
+			font-size: 2em;
+			color:#ccc;
+			background: $white;
+			cursor: pointer;
+		}
+	}
+
+	article{
+		height: auto;
+		width: 100%;
+		// background: #7EA5A9;
+		overflow-x: auto;
+		position: absolute;
+		top: 50px;
+		bottom: 50px;
+	}
+
+	footer{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		background: red;
+	}
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		max-width: 100%;
+		width: 100%;
+		right: -100%;
+	}
+}
+
+.cart-overlay{
+	position: fixed;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	min-height: 100%;
+	width: 100%;
+	height: auto;
+	background: $blackFrog;
+	opacity: .5;
+	z-index: 999;
+	padding-right:17px;
+	transition: opacity 1s linear;
+}
+
+.cart-list{
+	padding: 10px;
+	// margin-bottom: 100px;
+	// max-height: 100%;
+	// overflow: auto;
+}
+
+.cart-item{
+	height: 25px;
+	font-size: .8em;
+	font-weight: bold;	
+}
+
+.cart-item-name{
+	float: left;
+	margin-right:10px;
+}
+
+.cart-price{
+	float: right;
+}
+
+.cart-delete-btn{
+	background: #bd6c6c;
+	border: none;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	text-align: center;
+	color:$white;
+	line-height: 20px;
+	font-size: .8em;
+
+	&:hover{
+		background: #b95858;
+		cursor: pointer;
+
+	}
+}

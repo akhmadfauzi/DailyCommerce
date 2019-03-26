@@ -1,0 +1,188 @@
+$cream : #DDDCCE;
+$bluePale : #A6BAC5;
+$aquaPale : #7EA5A9;
+$blueFrog : #5585BC;
+$blackFrog : #1A1924;
+$white : #fff;
+
+
+.product-details{
+	bottom: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	position: fixed;
+	margin: 0 auto;
+	overflow: auto;
+	z-index: 1001;
+	width: 917px;
+
+	@media only screen and (min-width: 768px) and (max-width: 991px){  
+		width: 600px;
+	}
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		width: 95%;
+		// top: 10px;
+		padding: 0 ;
+
+	}
+	
+}
+
+
+.detail-header{
+	height: 30px;
+	position: relative;
+	padding-top: 10px;
+}
+
+.detail-body{
+	margin: 20px 0;
+	padding: 10px;
+	border-radius: 5px;
+	background: $white;
+	position: relative;
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		margin: 10px 0;
+	}
+}
+
+
+.product-images{
+	// min-width: 600px;
+	min-height: 570px;
+	max-width: 570px;
+	max-height: 570px;
+	height: 570px;
+	width: auto;
+	overflow: hidden;
+	float: left;
+	display: block;
+	border-radius: 5px;
+
+
+	img{
+		// max-width: inherit;
+		// min-width: inherit;
+		min-height:inherit;
+
+		@media only screen and (min-width: 320px) and (max-width: 479px){  
+			max-width: 100%;
+		}
+		
+		@media only screen and (min-width: 768px) and (max-width: 991px){  
+			min-height: 400px;
+			max-width: 400px;
+			height: 400px;
+			width: auto;
+		}
+	}
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		width: 100%;
+		min-height: 320px;
+		height: 320px;
+	}
+
+	@media only screen and (min-width: 768px) and (max-width: 991px){  
+		min-height: 400px;
+		max-width: 400px;
+		height: 400px;
+		width: auto;
+	}
+}
+
+.call-to-action{
+	display: block;
+	float: right;
+	width: 280px;
+	padding: 10px;
+
+	.product-price{
+		font-size: 1.5em;
+		font-weight: bold;
+		color: orangered;
+	}
+
+	.product-unit{
+		font-size: .8em;
+		color:#000;
+	}
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		width: 100%;
+		padding: 10px 0;
+		float: none;
+	}
+
+	@media only screen and (min-width: 768px) and (max-width: 991px){  
+		width: 160px;
+		padding: 10px;
+	}
+}
+.description{
+	font-size: 1em;
+	border: solid .5px #ccc;
+	border-radius: 5px;
+	position: relative;
+	overflow: hidden;
+
+	ul{
+		padding: 30px;
+		margin: 0 auto;
+	}
+
+	.header{
+		padding: 10px;
+		display: block;
+		width: 100%;
+		border-bottom: solid .5px #ccc;
+		font-weight: bold;
+	}
+
+	.body{
+		// padding: 15px;
+		display: block;
+		width: 100%;
+		padding: 5px;
+	}
+}
+
+
+.title{
+	padding: 0;
+	margin: 0;
+	font-size: 1.2em
+}
+
+// loading
+
+.loading{
+	display: block;
+	margin: auto auto;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: relative;
+	
+}
+
+.loading-background{
+	padding: 50px;
+	background: $white;
+	border-radius: 10px;
+	position: relative;
+	margin: auto auto;
+
+	max-width: 76px;
+	max-height: 76px;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1001;
+}
+

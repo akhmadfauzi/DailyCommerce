@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import '../styles/dist/pagination.css';
 export default class Pagination extends Component {
     getPages(){
         var pages = [];

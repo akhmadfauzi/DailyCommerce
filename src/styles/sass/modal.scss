@@ -1,4 +1,13 @@
+$cream : #DDDCCE;
+$bluePale : #A6BAC5;
+$aquaPale : #7EA5A9;
+$blueFrog : #5585BC;
+$blackFrog : #1A1924;
+$white : #fff;
+$dialogWidth:900px;
+
 // Modal Component
+
 .modal-open .modal{
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -9,13 +18,42 @@
 	position: fixed;
 	top: 0;
 	left: 0;
-	z-index: 1;
-}
+	z-index: 999;
 
+	@media only screen and (min-width: 768px) and (max-width: 991px){  
+		width: 735px;
+	}
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		width: 100%;
+	}
+
+	@media only screen and (min-width: 480px) and (max-width: 767px){  
+		width: 480px;
+	}
+}
+.in{
+	opacity: 1 !important;
+}
 .modal-dialog{
-	width: 600px;
+	width: $dialogWidth;
 	margin: 20px auto;
 	position: relative;
+	opacity: 0;
+	z-index: 1000;
+	transition: opacity .2s ease-in;
+
+	@media only screen and (min-width: 768px) and (max-width: 991px){  
+		width: 735px;
+	}
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		width: 95%;
+	}
+
+	@media only screen and (min-width: 480px) and (max-width: 767px){  
+		width: 480px;
+	}
 }
 .modal-content{
 	background: #fff;
@@ -23,6 +61,19 @@
 	width: inherit;
 	border-radius: 5px;
 	overflow: hidden;
+	margin: 0 auto;
+
+	@media only screen and (min-width: 768px) and (max-width: 991px){  
+		width: 735px;
+	}
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		width: 95%;
+	}
+
+	@media only screen and (min-width: 480px) and (max-width: 767px){  
+		width: 480px;
+	}
 }
 .modal-footer,.modal-body,.modal-header{
 	padding:10px;
@@ -30,7 +81,7 @@
 .modal-header{
 	height: 30px;
 	font-weight: bold;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #e9e8e8;
 	line-height: 30px;
 	display: block;
 	
@@ -48,9 +99,30 @@
 	height: 100%;
 	background: #000;
 	opacity: .5;	
-	z-index: 0;
+	z-index: 99;
 }
 
 .modal-close{
 	display: none !important;
+}
+
+
+.button-modal-close{
+	position: absolute;
+	top: 7.5px;
+	right: 7.5px;
+	width: 33px;
+	height: 33px;
+	border-radius: 10px;
+	border: 1px solid #ccc;
+	color: $blackFrog;
+	background: $white;
+	text-align: center;
+	line-height: 33px;
+	z-index: 1001;
+	cursor: pointer;
+
+	i {
+		pointer-events: none;
+	}
 }

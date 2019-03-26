@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/dist/cart.css';
 import CartList from './CartList';
 import Overlay from './Overlay';
 

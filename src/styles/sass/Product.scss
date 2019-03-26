@@ -1,0 +1,97 @@
+$cream : #DDDCCE;
+$bluePale : #A6BAC5;
+$aquaPale : #7EA5A9;
+$blueFrog : #5585BC;
+$blackFrog : #1A1924;
+$white : #fff;
+
+.item{
+	width: 198px;
+	float: left;
+	border: 1px solid #ccc;
+	overflow: hidden;
+	margin: 15px;
+	padding: 5px;
+	border-radius: 5px;
+
+	a{
+		font-size: 1.2em;
+		display: block;
+
+		transition: color .1s linear;
+		&:hover{
+			color: $aquaPale
+		}
+	}
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		width: 92%;
+		float: none;
+		margin: 2%;
+		padding: 2%;
+
+	}
+
+	@media only screen and (min-width: 480px) and (max-width: 767px){  
+		max-width: 198px;
+		float: left;
+	}
+	
+	.image{
+		display: block;
+		width:auto;
+		height:198px;
+		overflow: hidden;
+		background: $cream;
+		cursor: pointer;
+		&:before{
+			position: absolute;
+			content: "200 x 200";
+			width: 198px;
+			height: 198px;
+			background: #ccc;
+			text-align: center;
+			line-height: 198px;
+			@media only screen and (min-width: 320px) and (max-width: 479px){  
+				// max-width: 96%;
+				width: 92%;
+			}
+
+		}
+
+		@media only screen and (min-width: 320px) and (max-width: 479px){  
+			width: 100%;
+			height: auto;
+		}
+	}
+
+}
+
+.name{
+	width: inherit;
+	font-size: .8em;
+	height: 45px;
+	padding: 5px 0;
+	font-weight: bold;
+}
+
+.price{
+	font-size: .8em;
+	font-weight: bold;
+	width: inherit;
+	padding: 5px 0;
+	height: 30px;
+
+	&:before{
+		content: "\0024";
+		margin-left:3px;
+		font-size: 1.4em;
+
+	}
+	& > span {
+		font-size: 1.4em;
+	}
+	& > span + span {
+		font-size: .9em;
+	}
+}

@@ -4,6 +4,7 @@ import ProductList from './components/ProductList';
 import Navigation from './components/Navigation';
 import Cart from './components/Cart';
 import ProductDetails from './components/ProductDetails';
+import Modal from './components/Modal';
 import SearchBar from './components/SearchBar';
 import Pagination from './components/Pagination';
 
@@ -22,7 +23,8 @@ class App extends Component {
 			'cartSlide':false,
 			'imageLoaded': false,
 			'filteredProducts': null,
-			'pagination': null
+			'pagination': null,
+			'modalIn':false
 		};
 		this.getProducts = this.getProducts.bind(this);
 		this.onProductClickHandler = this.onProductClickHandler.bind(this);
@@ -150,17 +152,25 @@ class App extends Component {
 		let product = this.findProductById(data.id);
 		this.setState({'openProduct':true,'productDetail':product});
 		document.body.className = 'modal-open';
+		setTimeout((self)=>{
+			self.setState({'modalIn':true});
+		},300,this);
 	}	
 
 	overlayClickHandler(e){
-		this.setState({
-			'openProduct':false,
-			'openCart':false,
-			'cartSlide':false,
-			'imageLoaded':false
-		});
-		document.body.className = '';
+		let target = e.target;
+		let role = target.getAttribute('role');
+		if(role === 'dialog'){
+			this.setState({
+				'openProduct':false,
+				'openCart':false,
+				'cartSlide':false,
+				'imageLoaded':false,
+				'modalIn':false,
 
+			});
+			document.body.className = '';
+		}
 	}
 
 	checkImageHandler(e){
@@ -169,6 +179,25 @@ class App extends Component {
 		}else{
 			console.log('wait a moment');
 		}
+	}
+
+	_getDetails(bool){
+		if(bool){
+			return (
+			<Modal onOverlayClick={this.overlayClickHandler} slideIn={this.state.modalIn}>
+				<ProductDetails 
+					imageLoaded={this.state.imageLoaded} 
+					checkImage={this.checkImageHandler.bind(this)} 
+					overlayClick={this.overlayClickHandler} 
+					openProduct={this.state.openProduct} 
+					product={this.state.productDetail}
+					addToCart={this.addToCartHandler}>
+				</ProductDetails>
+			</Modal>);
+		}else{
+			return '';
+		}
+
 	}
 
 
@@ -183,15 +212,8 @@ class App extends Component {
 			);
 		} else {
 			const isDetail = this.state.openProduct ? true : false;
-			let detail = isDetail ? (
-			<ProductDetails 
-				imageLoaded={this.state.imageLoaded} 
-				checkImage={this.checkImageHandler.bind(this)} 
-				overlayClick={this.overlayClickHandler} 
-				openProduct={this.state.openProduct} 
-				product={this.state.productDetail}
-				addToCart={this.addToCartHandler}>
-			</ProductDetails>) : '';
+			const detail = this._getDetails(isDetail);
+			
 			let cart = this.state.openCart ? (
 				<Cart 
 					selectedProducts={this.state.cartItems}
@@ -207,14 +229,14 @@ class App extends Component {
 					<Navigation onCartClickMenu={this.onCartMenuClickHandler.bind(this)} cart={this.state.cartItems}></Navigation>
 					{cart}
 					<div className="App">
-						<SearchBar onSearch={this.onSearchHandler}></SearchBar>
+						{/* <SearchBar onSearch={this.onSearchHandler}></SearchBar> */}
 						<ProductList 
 							products={products} 
 							addToCart={this.addToCartHandler}
 							onProductClick={this.onProductClickHandler}>
 						</ProductList>
 					</div>
-					<Pagination perpage="8" adjacent="3" totalPages={this.state.pagination} ></Pagination>
+					{/* <Pagination perpage="8" adjacent="3" totalPages={this.state.pagination} ></Pagination> */}
 					{detail}
 				</React.Fragment>
 			);

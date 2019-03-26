@@ -1,0 +1,29 @@
+.search-bar{
+	padding: 0 15px;
+	position: relative;
+	overflow: hidden;
+	width: 930px;
+	input{
+		border: 1px solid #ccc;
+		width: 908px;
+		padding: 10px;
+		font-weight: bold;
+		border-radius: 5px;
+		// padding: 10px;
+		// font-size: 1.4em;
+	}
+
+	@media only screen and (min-width: 768px) and (max-width: 991px){  
+		width: 735px;
+	}
+
+	@media only screen and (min-width: 320px) and (max-width: 479px){  
+		width: 100%;
+	}
+
+	@media only screen and (min-width: 480px) and (max-width: 767px){  
+		width: 480px;
+	}
+
+	
+}

@@ -1,0 +1,88 @@
+.item {
+  width: 198px;
+  float: left;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  margin: 15px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.item a {
+  font-size: 1.2em;
+  display: block;
+  transition: color 0.1s linear;
+}
+.item a:hover {
+  color: #7EA5A9;
+}
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  .item {
+    width: 92%;
+    float: none;
+    margin: 2%;
+    padding: 2%;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .item {
+    max-width: 198px;
+    float: left;
+  }
+}
+.item .image {
+  display: block;
+  width: auto;
+  height: 198px;
+  overflow: hidden;
+  background: #DDDCCE;
+  cursor: pointer;
+}
+.item .image:before {
+  position: absolute;
+  content: "200 x 200";
+  width: 198px;
+  height: 198px;
+  background: #ccc;
+  text-align: center;
+  line-height: 198px;
+}
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  .item .image:before {
+    width: 92%;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+  .item .image {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.name {
+  width: inherit;
+  font-size: 0.8em;
+  height: 45px;
+  padding: 5px 0;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 0.8em;
+  font-weight: bold;
+  width: inherit;
+  padding: 5px 0;
+  height: 30px;
+}
+.price:before {
+  content: "$";
+  margin-left: 3px;
+  font-size: 1.4em;
+}
+.price > span {
+  font-size: 1.4em;
+}
+.price > span + span {
+  font-size: 0.9em;
+}
+
+/*# sourceMappingURL=product.css.map */
