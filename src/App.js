@@ -10,6 +10,7 @@ import Pagination from './components/Pagination';
 
 var productLink = 'https://api.jsonbin.io/b/5c8f06732d33133c40155809/9';
 var key = '$2a$10$Sv7oWDHBiXDaUnQ26ruN7.mxTX1YNwHa1n2pRqsuBmZ1FEqkm40bK';
+var totalProductDisplay = 32;
 
 class App extends Component {
 	constructor(props) {
@@ -17,7 +18,7 @@ class App extends Component {
 		this.state = { 
 			'products': null,
 			'openCart': false,
-			'cartItems':[],
+			'cart':[],
 			'productDetail': null,
 			'openProduct':false,
 			'cartSlide':false,
@@ -25,12 +26,14 @@ class App extends Component {
 			'filteredProducts': null,
 			'pagination': null,
 			'modalIn':false
+			
 		};
 		this.getProducts = this.getProducts.bind(this);
 		this.onProductClickHandler = this.onProductClickHandler.bind(this);
 		this.overlayClickHandler = this.overlayClickHandler.bind(this);
 		this.addToCartHandler = this.addToCartHandler.bind(this);
 		this.onSearchHandler = this.onSearchHandler.bind(this);
+		this.onCartItemDelete = this.onCartItemDelete.bind(this);
 	}
 
 	componentDidMount() {
@@ -78,7 +81,7 @@ class App extends Component {
 				})
 			});
 		}else{
-			let products = JSON.parse(localStore).slice(0,16);
+			let products = JSON.parse(localStore).slice(0,totalProductDisplay);
 			self.setState({
 				'products':products,
 				'pagination': Math.ceil(Math.floor(products.length/16))
@@ -88,20 +91,55 @@ class App extends Component {
 	}
 
 	addToCartHandler(item){
+		
+
 		let temp=[];
-		let currentCart = this.state.cartItems;
-		var product = this.findProductById(item);
+		let currentCart = this.state.cart;
+		var selectedProduct = this.findProductById(item);
+		let product = {
+			'id':selectedProduct.id,
+			'name':selectedProduct.name,
+			'quantity':1,
+			'availableQuantity':selectedProduct.quantity,
+			'price':selectedProduct.price,
+		};
+
 		if(!currentCart.length){
 			temp.push(product);			
-			this.setState({'cartItems': temp});
+			this.setState({'cart': temp});
 		}else{
-			currentCart.push(product);	
-			this.setState({'cartItems': currentCart});		
+			if(this.hasItem(product.id)){
+				currentCart = this.updateExistingItem(currentCart, product);
+			}else{
+				currentCart.push(product);
+			}
+			
+			
+			this.setState({'cart': currentCart});		
 		}
 	}
 
-	checkDuplication(){
+	hasItem(id){
+		let cart = this.state.cart;
+		for (let i = 0; i < cart.length; i++) {
+			if(cart[i].id === id){
+				return true;
+			}			
+		}
+		return false;
+	}
 
+	updateExistingItem(cart, product){
+		
+		for (let i = 0; i < cart.length; i++) {
+			if(cart[i].id === product.id){
+				cart[i].quantity += 1;
+				return cart;
+			}			
+		}
+
+		return false;
+		
 	}
 
 	findProductByQuery(query){
@@ -130,7 +168,7 @@ class App extends Component {
 
 	onCartMenuClickHandler(e){
 		e.preventDefault();
-		console.log(this.state.cartItems);
+		console.log(this.state.cart);
 		let target = e.target;
 		if(target.dataset.cartNav === 'open'){
 			this.setState({'openCart':true});
@@ -184,7 +222,7 @@ class App extends Component {
 	_getDetails(bool){
 		if(bool){
 			return (
-			<Modal onOverlayClick={this.overlayClickHandler} slideIn={this.state.modalIn}>
+			<Modal onOverlayClick={this.overlayClickHandler} slideIn={this.state.modalIn} image="false">
 				<ProductDetails 
 					imageLoaded={this.state.imageLoaded} 
 					checkImage={this.checkImageHandler.bind(this)} 
@@ -199,6 +237,16 @@ class App extends Component {
 		}
 
 	}
+
+	onCartItemDelete(e){
+		let target = e.target;
+		let id = target.dataset.id;
+		let cart = this.state.cart;
+		cart = cart.filter( item => item.id !== id);
+		this.setState({'cart':cart});
+	}
+
+	
 
 
 	render() {
@@ -216,17 +264,18 @@ class App extends Component {
 			
 			let cart = this.state.openCart ? (
 				<Cart 
-					selectedProducts={this.state.cartItems}
+					cart={this.state.cart}
 					onCartClose={this.onCartMenuClickHandler.bind(this)} 
 					openCart={this.state.openCart}
 					overlayClick={this.overlayClickHandler}
-					cartSlide={this.state.cartSlide}>
+					cartSlide={this.state.cartSlide}
+					itemDelete={this.onCartItemDelete}>
 				</Cart>
 			) : '';
 
 			return (
 				<React.Fragment>
-					<Navigation onCartClickMenu={this.onCartMenuClickHandler.bind(this)} cart={this.state.cartItems}></Navigation>
+					<Navigation onCartClickMenu={this.onCartMenuClickHandler.bind(this)} cart={this.state.cart}></Navigation>
 					{cart}
 					<div className="App">
 						{/* <SearchBar onSearch={this.onSearchHandler}></SearchBar> */}

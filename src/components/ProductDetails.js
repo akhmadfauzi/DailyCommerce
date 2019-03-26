@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import '../styles/dist/detail.css';
+import '../styles/dist/details.css';
 import Overlay from './Overlay';
 
 class ProductDetails extends Component {
@@ -15,7 +15,9 @@ class ProductDetails extends Component {
 		image.src = this.props.product.image;
 		image.onloadedmetadata = this.props.checkImage;
 	}
-
+	onImageClick(e){
+		alert(e.target.src);
+	}
 	render() {
 		const product = this.props.product;
 		const desc = {'__html': product.description};
@@ -34,7 +36,7 @@ class ProductDetails extends Component {
 						<div className="details-content">
 							<div className="details-body">
 								<div className="product-images">
-									<img src={product.image} alt={product.name} onLoad={this.props.checkImage}/>
+									<img src={product.image} alt={product.name} onLoad={this.props.checkImage} onClick={this.onImageClick.bind(this)}/>
 								</div>
 								<div className="call-to-action">
 									<h1 className="title">{product.name}</h1>

@@ -67,14 +67,31 @@ $white : #fff;
 		overflow-x: auto;
 		position: absolute;
 		top: 50px;
-		bottom: 50px;
+		bottom: 100px;
 	}
 
 	footer{
 		position: absolute;
 		bottom: 0;
 		left: 0;
-		background: red;
+		height: 100px;
+		div{
+			height: 50px;
+			line-height: 50px;
+			display: block;
+			color: #bd6c6c;
+			font: {
+				size: 1.3em;
+				weight: bold;				
+			}
+			
+
+			text-align: center;
+			
+			&:before{
+				content:'USD ';
+			}
+		}	
 	}
 
 	@media only screen and (min-width: 320px) and (max-width: 479px){  
@@ -136,5 +153,29 @@ $white : #fff;
 		background: #b95858;
 		cursor: pointer;
 
+	}
+}
+article .empty-cart{
+	position: absolute;
+	top:45%;
+}
+.empty-cart{
+	width: 100%;
+	display: block;
+	
+	span{
+		width: 100px;
+		height: 100px;
+		display: block;
+		position: relative;
+		margin: 0 auto;
+		overflow: hidden;
+		line-height: 100px;
+		text-align: center;
+		border-radius: 50px;
+		background: #eeeded;
+		border:1.5px solid #cecdcd;
+		font-size: 3em;
+		color:#cecdcd;
 	}
 }
