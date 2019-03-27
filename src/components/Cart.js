@@ -5,7 +5,7 @@ import Overlay from './Overlay';
 
 
 class Cart extends Component {
-	grandTotal(){
+	subTotal(){
 		let grandTotal = 0;
 		let cart = this.props.cart;
 		for (let i = 0; i < cart.length; i++) {
@@ -19,7 +19,7 @@ class Cart extends Component {
 	render() {
 		let cartClass = this.props.openCart ? (this.props.cartSlide ? 'cart cart-show cart-in' : 'cart cart-show') : 'cart';
 		const cartOverlayClass = this.props.openCart ? 'cart-overlay cart-overlay-show' : 'cart-overlay';
-		const grandTotal = this.grandTotal();
+		const subTotal = this.subTotal();
 		const cartList = this.props.cart.length ? (<CartList itemDelete={this.props.itemDelete} cart={this.props.cart}></CartList>):<div className="empty-cart"><span><i className="fa fa-shopping-cart"></i></span></div>;
 		return (
 			<React.Fragment>
@@ -31,7 +31,7 @@ class Cart extends Component {
 						{cartList}
 					</article>
 					<footer>
-						<div className="grand-total">{grandTotal}</div>
+						<div className="grand-total">Subtotal : ${subTotal}</div>
 						<button className="button button-primary button-block button-checkout">Checkout</button>
 					</footer>
 				</div>

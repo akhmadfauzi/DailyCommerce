@@ -8,7 +8,7 @@ class Navigation extends Component {
 			<nav className="nav">
 				<div className="nav-items">
 					<ul className="left">
-						<li>Swalon</li>
+						<li>Daily Commerce</li>
 					</ul>
 
 					<ul className="right">

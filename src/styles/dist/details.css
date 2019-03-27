@@ -54,7 +54,7 @@
 @media only screen and (min-width: 320px) and (max-width: 479px) {
   .product-images img {
     max-width: 100%;
-    width: auto;
+    width: 100%;
     height: auto;
   }
 }

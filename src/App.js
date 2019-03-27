@@ -5,12 +5,12 @@ import Navigation from './components/Navigation';
 import Cart from './components/Cart';
 import ProductDetails from './components/ProductDetails';
 import Modal from './components/Modal';
-import SearchBar from './components/SearchBar';
-import Pagination from './components/Pagination';
+// import SearchBar from './components/SearchBar';
+// import Pagination from './components/Pagination';
 
 var productLink = 'https://api.jsonbin.io/b/5c8f06732d33133c40155809/9';
 var key = '$2a$10$Sv7oWDHBiXDaUnQ26ruN7.mxTX1YNwHa1n2pRqsuBmZ1FEqkm40bK';
-var totalProductDisplay = 32;
+var totalProductDisplay = 8;
 
 class App extends Component {
 	constructor(props) {
@@ -113,8 +113,6 @@ class App extends Component {
 			}else{
 				currentCart.push(product);
 			}
-			
-			
 			this.setState({'cart': currentCart});		
 		}
 	}
