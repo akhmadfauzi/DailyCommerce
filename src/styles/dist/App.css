@@ -9,7 +9,7 @@ body {
 .modal-open {
   overflow: hidden;
   position: relative;
-  padding-right: 17px;
+  padding-right: 17px !important;
   width: 100%;
 }
 @media only screen and (min-width: 320px) and (max-width: 479px) {
@@ -112,7 +112,7 @@ body {
   color: #fff;
 }
 .nav ul li a:hover {
-  background: #7EA5A9;
+  background: #6c8d91;
   color: #fff;
 }
 .nav .left {
@@ -170,13 +170,6 @@ body {
 }
 .nav-cart-open > * {
   pointer-events: none;
-}
-
-.button-checkout {
-  border-radius: 0;
-  height: 50px;
-  background: #5585BC;
-  font-size: 1.5em;
 }
 
 .button-product-details {

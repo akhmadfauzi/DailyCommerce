@@ -30,10 +30,11 @@ class App extends Component {
 		};
 		this.getProducts = this.getProducts.bind(this);
 		this.onProductClickHandler = this.onProductClickHandler.bind(this);
-		this.overlayClickHandler = this.overlayClickHandler.bind(this);
+		this.onBackdropClickHandler = this.onBackdropClickHandler.bind(this);
 		this.addToCartHandler = this.addToCartHandler.bind(this);
 		this.onSearchHandler = this.onSearchHandler.bind(this);
 		this.onCartItemDelete = this.onCartItemDelete.bind(this);
+		this.onQuantityChangeHandler = this.onQuantityChangeHandler.bind(this);
 	}
 
 	componentDidMount() {
@@ -109,7 +110,7 @@ class App extends Component {
 			this.setState({'cart': temp});
 		}else{
 			if(this.hasItem(product.id)){
-				currentCart = this.updateExistingItem(currentCart, product);
+				currentCart = this.updateExistingCartItem(currentCart, product.id);
 			}else{
 				currentCart.push(product);
 			}
@@ -127,11 +128,12 @@ class App extends Component {
 		return false;
 	}
 
-	updateExistingItem(cart, product){
+	updateExistingCartItem(cart, id, value = 1){
 		
 		for (let i = 0; i < cart.length; i++) {
-			if(cart[i].id === product.id){
-				cart[i].quantity += 1;
+			if(cart[i].id === id){
+				let currentQty = cart[i].availableQuantity;
+				cart[i].quantity += (cart[i].quantity + value > currentQty ? 0 : value);
 				return cart;
 			}			
 		}
@@ -166,7 +168,6 @@ class App extends Component {
 
 	onCartMenuClickHandler(e){
 		e.preventDefault();
-		console.log(this.state.cart);
 		let target = e.target;
 		if(target.dataset.cartNav === 'open'){
 			this.setState({'openCart':true});
@@ -193,17 +194,16 @@ class App extends Component {
 		},300,this);
 	}	
 
-	overlayClickHandler(e){
+	onBackdropClickHandler(e){
 		let target = e.target;
 		let role = target.getAttribute('role');
-		if(role === 'dialog'){
+		if(role === 'dialog' || role === 'overlay'){
 			this.setState({
 				'openProduct':false,
 				'openCart':false,
 				'cartSlide':false,
 				'imageLoaded':false,
 				'modalIn':false,
-
 			});
 			document.body.className = '';
 		}
@@ -220,11 +220,11 @@ class App extends Component {
 	_getDetails(bool){
 		if(bool){
 			return (
-			<Modal onOverlayClick={this.overlayClickHandler} slideIn={this.state.modalIn} image="false">
+			<Modal onOverlayClick={this.onBackdropClickHandler} slideIn={this.state.modalIn} image="false">
 				<ProductDetails 
 					imageLoaded={this.state.imageLoaded} 
 					checkImage={this.checkImageHandler.bind(this)} 
-					overlayClick={this.overlayClickHandler} 
+					overlayClick={this.onBackdropClickHandler} 
 					openProduct={this.state.openProduct} 
 					product={this.state.productDetail}
 					addToCart={this.addToCartHandler}>
@@ -235,13 +235,47 @@ class App extends Component {
 		}
 
 	}
+	getCartItemById(id){
+		var products = this.state.cart;
+		for (let i = 0; i < products.length; i++) {
+			if(products[i].id === id){
+				return products[i];
+			}
+		}
+		return null;
+	}
 
+	updateCartItem(product){
+		var products = this.state.cart;
+		for (let i = 0; i < products.length; i++) {
+			if(products[i].id === product.id){
+				products[i] = product;
+			}
+		}
+
+		this.setState({'cart':products});
+		
+	}
 	onCartItemDelete(e){
 		let target = e.target;
 		let id = target.dataset.id;
 		let cart = this.state.cart;
 		cart = cart.filter( item => item.id !== id);
 		this.setState({'cart':cart});
+	}
+
+	onQuantityChangeHandler(e){
+		let target = e.target;
+		let id = target.dataset.id;
+		let value = parseInt(target.value);
+		let currentCart = this.state.cart;
+		if(this.hasItem(id)){
+			let product = this.getCartItemById(id);
+			console.log(product);
+			product.quantity = value < 1 ? 1 : (value > product.availableQuantity ? product.availableQuantity : value);
+			this.updateCartItem(product);			
+		}
+		this.setState({'cart': currentCart});	
 	}
 
 	
@@ -265,8 +299,9 @@ class App extends Component {
 					cart={this.state.cart}
 					onCartClose={this.onCartMenuClickHandler.bind(this)} 
 					openCart={this.state.openCart}
-					overlayClick={this.overlayClickHandler}
+					overlayClick={this.onBackdropClickHandler}
 					cartSlide={this.state.cartSlide}
+					onQuantityChange={this.onQuantityChangeHandler}
 					itemDelete={this.onCartItemDelete}>
 				</Cart>
 			) : '';

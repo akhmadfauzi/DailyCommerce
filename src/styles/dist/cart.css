@@ -159,4 +159,21 @@ article .empty-cart {
   color: #cecdcd;
 }
 
+.cart-qty input {
+  width: 30px;
+  display: inline;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+.button-checkout {
+  border-radius: 0;
+  height: 50px;
+  background: #5585BC;
+  font-size: 1.5em;
+}
+.button-checkout:hover {
+  background: #4f7db1;
+}
+
 /*# sourceMappingURL=cart.css.map */

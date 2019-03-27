@@ -8,7 +8,7 @@ class CartList extends Component {
 	render() {
 		const products = this.props.cart.map((product)=>{
 			return (
-				<CartItem key={product.id} product={product} itemDelete={this.props.itemDelete}></CartItem>
+				<CartItem key={product.id} product={product} itemDelete={this.props.itemDelete} onQuantityChange={this.props.onQuantityChange}></CartItem>
 			);
 		});
 		return (

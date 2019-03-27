@@ -181,3 +181,26 @@ article .empty-cart{
 		color:#cecdcd;
 	}
 }
+
+.cart-qty {
+	input {
+		width: 30px;
+		display: inline;
+		border-radius: 3px;
+		border: 1px solid #ccc;
+	}
+}
+
+// Button
+// CUSTOM BUTTON
+.button-checkout{
+	border-radius: 0;
+	height: 50px;
+	background: $blueFrog;
+	font-size: 1.5em;
+
+	&:hover{
+		background: rgb(79, 125, 177);
+
+	}
+}

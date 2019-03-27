@@ -10,7 +10,7 @@ class CartItem extends Component {
 				<div className="cart-item">
 					<span className="cart-item-name"><button className="cart-delete-btn" onClick={this.props.itemDelete} data-id={data.id}><i className="fa fa-times"></i></button></span> 
 					<span className="cart-item-name">{data.name} x </span> 
-					<span className="cart-qty">{data.quantity}</span>  
+					<span className="cart-qty"><input type="number" value={data.quantity} data-id={data.id} onChange={this.props.onQuantityChange}/></span>  
 					<span className="cart-price">${total}</span>
 				</div>
 			</React.Fragment>

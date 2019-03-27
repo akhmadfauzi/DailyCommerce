@@ -20,7 +20,7 @@ class Cart extends Component {
 		let cartClass = this.props.openCart ? (this.props.cartSlide ? 'cart cart-show cart-in' : 'cart cart-show') : 'cart';
 		const cartOverlayClass = this.props.openCart ? 'cart-overlay cart-overlay-show' : 'cart-overlay';
 		const subTotal = this.subTotal();
-		const cartList = this.props.cart.length ? (<CartList itemDelete={this.props.itemDelete} cart={this.props.cart}></CartList>):<div className="empty-cart"><span><i className="fa fa-shopping-cart"></i></span></div>;
+		const cartList = this.props.cart.length ? (<CartList itemDelete={this.props.itemDelete} cart={this.props.cart} onQuantityChange={this.props.onQuantityChange}></CartList>):<div className="empty-cart"><span><i className="fa fa-shopping-cart"></i></span></div>;
 		return (
 			<React.Fragment>
 				<div className={cartClass}>
