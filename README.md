@@ -1,3 +1,5 @@
+## Demo
+[DailyCommerce] - Demo Live
 
 ## DailyCommerce
 
@@ -14,7 +16,6 @@ Is an extremely simple ecommerce page.
  - React.js
  - SASS
 
-## Demo
-[DailyCommerce] - Demo Live
+
 
 [DailyCommerce]: <http://dailycommerce.akhmadfauzi.com>
