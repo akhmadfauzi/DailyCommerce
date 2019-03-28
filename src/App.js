@@ -77,7 +77,7 @@ class App extends Component {
 				// self.setState({ 'products': products });
 				localStorage.setItem('products', JSON.stringify(products));
 				self.setState({
-					'products':products,
+					'products':products.slice(0,totalProductDisplay),
 					'pagination': Math.ceil(Math.floor(products.length/16))
 				})
 			});
