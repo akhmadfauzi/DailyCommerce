@@ -1,5 +1,5 @@
 ## Demo
-[DailyCommerce] - Demo Live
+Demo Live : [DailyCommerce]
 
 ## DailyCommerce
 
