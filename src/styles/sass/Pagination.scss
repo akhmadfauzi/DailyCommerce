@@ -10,9 +10,30 @@
 		& li {
 			display: inline-block;
 			padding: 5px;
-			background: #5585BC;
+			
 			width: 20px;
 			height: 20px;
+
+			&:hover{
+				cursor: pointer;
+				background: #c5c5c5;
+			}
+
+			&:first-child{
+				border-radius: 3px 0 0 3px;
+			}
+
+			&:last-child{
+				border-radius: 0 3px 3px 0;
+			}
 		}
+	}
+}
+
+.active{
+	background: #c5c5c5;
+	
+	&:hover{
+		cursor: default;
 	}
 }

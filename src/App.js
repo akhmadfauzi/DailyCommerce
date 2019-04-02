@@ -6,11 +6,10 @@ import Cart from './components/Cart';
 import ProductDetails from './components/ProductDetails';
 import Modal from './components/Modal';
 // import SearchBar from './components/SearchBar';
-// import Pagination from './components/Pagination';
+import Pagination from './components/Pagination';
 
 var productLink = 'https://api.jsonbin.io/b/5c8f06732d33133c40155809/9';
 var key = '$2a$10$Sv7oWDHBiXDaUnQ26ruN7.mxTX1YNwHa1n2pRqsuBmZ1FEqkm40bK';
-var totalProductDisplay = 8;
 
 class App extends Component {
 	constructor(props) {
@@ -25,7 +24,9 @@ class App extends Component {
 			'imageLoaded': false,
 			'filteredProducts': null,
 			'pagination': null,
-			'modalIn':false
+			'modalIn':false,
+			'itemPerPage': 8,
+			'currentPage': 1
 			
 		};
 		this.getProducts = this.getProducts.bind(this);
@@ -76,19 +77,21 @@ class App extends Component {
 				console.log('Success');
 				// self.setState({ 'products': products });
 				localStorage.setItem('products', JSON.stringify(products));
+				
 				self.setState({
-					'products':products.slice(0,totalProductDisplay),
-					'pagination': Math.ceil(Math.floor(products.length/16))
-				})
+					'products':products,
+					'pagination': Math.ceil(Math.floor(products.length/this.state.itemPerPage))
+				});
+				
 			});
 		}else{
-			let products = JSON.parse(localStore).slice(0,totalProductDisplay);
+			let products = JSON.parse(localStore);
 			self.setState({
 				'products':products,
-				'pagination': Math.ceil(Math.floor(products.length/16))
-			})
+				'pagination': Math.ceil(Math.floor(products.length/this.state.itemPerPage))
+			});
+			
 		}
-		
 	}
 
 	addToCartHandler(item){
@@ -278,6 +281,15 @@ class App extends Component {
 		this.setState({'cart': currentCart});	
 	}
 
+	onPageChangeHandler(e){
+		const target = e.target;
+		const pageNumber = target.dataset.pageNumber;
+		this.setState({
+			'currentPage':pageNumber,
+		});
+		
+	}
+
 	
 
 
@@ -315,10 +327,18 @@ class App extends Component {
 						<ProductList 
 							products={products} 
 							addToCart={this.addToCartHandler}
-							onProductClick={this.onProductClickHandler}>
+							onProductClick={this.onProductClickHandler}
+							itemPerPage={this.state.itemPerPage}
+							currentPage={this.state.currentPage}>
 						</ProductList>
 					</div>
-					{/* <Pagination perpage="8" adjacent="3" totalPages={this.state.pagination} ></Pagination> */}
+					<Pagination 
+						perpage="8" 
+						adjacent="3" 
+						totalPages={this.state.pagination} 
+						currentPage={this.state.currentPage} 
+						onPageChange={this.onPageChangeHandler.bind(this)}>
+					</Pagination>
 					{detail}
 				</React.Fragment>
 			);

@@ -13,7 +13,8 @@ class ProductList extends Component {
 		);
 	}
 	render() {
-		const products = this.props.products.map(this.renderProducts.bind(this))
+		const startIndex = this.props.currentPage > 1 ? (this.props.currentPage * this.props.itemPerPage) : 0;
+		const products = this.props.products.slice(startIndex,startIndex+this.props.itemPerPage).map(this.renderProducts.bind(this));
 		return (
 			<React.Fragment>
 				{products}

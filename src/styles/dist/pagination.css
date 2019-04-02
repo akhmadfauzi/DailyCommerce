@@ -10,9 +10,25 @@
 .pagination ul li {
   display: inline-block;
   padding: 5px;
-  background: #5585BC;
   width: 20px;
   height: 20px;
+}
+.pagination ul li:hover {
+  cursor: pointer;
+  background: #c5c5c5;
+}
+.pagination ul li:first-child {
+  border-radius: 3px 0 0 3px;
+}
+.pagination ul li:last-child {
+  border-radius: 0 3px 3px 0;
+}
+
+.active {
+  background: #c5c5c5;
+}
+.active:hover {
+  cursor: default;
 }
 
 /*# sourceMappingURL=pagination.css.map */
