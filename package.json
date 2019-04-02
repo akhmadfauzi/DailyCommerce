@@ -13,7 +13,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "sassify": "sass --watch ./src/styles/sass/App.scss:./src/styles/dist/App.css ./src/styles/sass/Cart.scss:./src/styles/dist/cart.css ./src/styles/sass/Details.scss:./src/styles/dist/details.css ./src/styles/sass/modal.scss:./src/styles/dist/modal.css ./src/styles/sass/Pagination.scss:./src/styles/dist/pagination.css ./src/styles/sass/Product.scss:./src/styles/dist/product.css ./src/styles/sass/SearchBar.scss:./src/styles/dist/searchbar.css"
+    "sassify": "sass --watch ./src/styles/sass/App.scss:./src/styles/dist/App.css ./src/styles/sass/Cart.scss:./src/styles/dist/cart.css ./src/styles/sass/Details.scss:./src/styles/dist/details.css ./src/styles/sass/modal.scss:./src/styles/dist/modal.css ./src/styles/sass/Pagination.scss:./src/styles/dist/pagination.css ./src/styles/sass/Product.scss:./src/styles/dist/product.css ./src/styles/sass/SearchBar.scss:./src/styles/dist/searchbar.css ./src/styles/sass/Footer.scss:./src/styles/dist/footer.css"
   },
   "eslintConfig": {
     "extends": "react-app"

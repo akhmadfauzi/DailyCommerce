@@ -14,6 +14,10 @@ $white : #fff;
 	padding: 5px;
 	border-radius: 5px;
 
+	& > div{
+		overflow: hidden;
+	}
+
 	a{
 		font-size: 1.2em;
 		display: block;

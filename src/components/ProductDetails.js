@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import '../styles/dist/details.css';
-import Overlay from './Overlay';
 
 class ProductDetails extends Component {
 
@@ -51,7 +50,6 @@ class ProductDetails extends Component {
 							</div>
 						</div>
 					</article>
-					{/* <Overlay overlayClick={this.props.overlayClick} overlayClass={this.props.openProduct}></Overlay> */}
 				</React.Fragment>
 			);
 		}

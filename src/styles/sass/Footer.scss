@@ -1,0 +1,15 @@
+$cream : #DDDCCE;
+$bluePale : #A6BAC5;
+$aquaPale : #7EA5A9;
+$blueFrog : #5585BC;
+$blackFrog : #1A1924;
+$white : #fff;
+
+footer{
+	height: 100px;
+	width: 100%;
+	display: block;
+	background: $blackFrog;
+	position: relative;
+	bottom: 0 !important;
+}

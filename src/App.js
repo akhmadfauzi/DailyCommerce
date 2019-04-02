@@ -7,6 +7,7 @@ import ProductDetails from './components/ProductDetails';
 import Modal from './components/Modal';
 // import SearchBar from './components/SearchBar';
 import Pagination from './components/Pagination';
+import Footer from './components/Footer';
 
 var productLink = 'https://api.jsonbin.io/b/5c8f06732d33133c40155809/9';
 var key = '$2a$10$Sv7oWDHBiXDaUnQ26ruN7.mxTX1YNwHa1n2pRqsuBmZ1FEqkm40bK';
@@ -25,7 +26,7 @@ class App extends Component {
 			'filteredProducts': null,
 			'pagination': null,
 			'modalIn':false,
-			'itemPerPage': 8,
+			'itemPerPage': 16,
 			'currentPage': 1
 			
 		};
@@ -340,6 +341,7 @@ class App extends Component {
 						onPageChange={this.onPageChangeHandler.bind(this)}>
 					</Pagination>
 					{detail}
+					<Footer></Footer>
 				</React.Fragment>
 			);
 		}

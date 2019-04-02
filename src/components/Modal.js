@@ -21,7 +21,7 @@ class Modal extends Component {
 		);
 
 		const imageDetails = (
-			<img src="https://d28niecfu6trh0.cloudfront.net/a7b62af586b81b113a0490c457a6b357.jpg"/>
+			<img src="https://d28niecfu6trh0.cloudfront.net/a7b62af586b81b113a0490c457a6b357.jpg" alt="placeholder"/>
 		);
 		const theContent = (this.props.image === 'true') ? imageDetails : productDetails;
 		return (

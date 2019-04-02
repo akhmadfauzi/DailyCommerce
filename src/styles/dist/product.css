@@ -7,6 +7,9 @@
   padding: 5px;
   border-radius: 5px;
 }
+.item > div {
+  overflow: hidden;
+}
 .item a {
   font-size: 1.2em;
   display: block;
