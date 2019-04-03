@@ -30,6 +30,10 @@ $blueFrog : #5585BC;
 }
 .first-page{
 	width: auto !important;
+
+	& * {
+		pointer-events: none;
+	}
 }
 .active{
 	background: $blueFrog;

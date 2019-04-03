@@ -1,4 +1,4 @@
-html, body {
+html, body, #root {
   height: 100%;
 }
 
@@ -45,6 +45,23 @@ body {
   .App {
     width: 480px;
   }
+}
+
+.err-404 {
+  font-size: 2em;
+  margin: 15px;
+  text-align: center;
+  width: 930;
+}
+
+.err-symbol {
+  font-size: 4em;
+  color: #ccc;
+}
+
+.err-text {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .button {

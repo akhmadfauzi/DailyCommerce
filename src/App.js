@@ -4,10 +4,10 @@ import ProductList from './components/ProductList';
 import Navigation from './components/Navigation';
 import Cart from './components/Cart';
 import ProductDetails from './components/ProductDetails';
-import Modal from './components/Modal';
-// import SearchBar from './components/SearchBar';
+import Modal from './components/ui/Modal';
+import SearchBar from './components/SearchBar';
 import Pagination from './components/Pagination';
-import Footer from './components/Footer';
+import Footer from './components/ui/Footer';
 
 var productLink = 'https://api.jsonbin.io/b/5c8f06732d33133c40155809/9';
 var key = '$2a$10$Sv7oWDHBiXDaUnQ26ruN7.mxTX1YNwHa1n2pRqsuBmZ1FEqkm40bK';
@@ -24,7 +24,7 @@ class App extends Component {
 			'cartSlide':false,
 			'imageLoaded': false,
 			'filteredProducts': null,
-			'pagination': null,
+			'pageCount': 0,
 			'modalIn':false,
 			'itemPerPage': 16,
 			'currentPage': 1
@@ -46,13 +46,22 @@ class App extends Component {
 	onSearchHandler(e){
 		let target = e.target;
 		let key = e.which;
+		
 		if(key === 13){
 			
-			let filtered = this.findProductByQuery(target.value);
-			if(target.value){
-				this.setState({'filteredProducts':filtered});
+			const value = target.value
+			const filtered = this.findProductByQuery(value);
+			const productsLen = filtered.length ? filtered.length : this.state.products.length;
+			const pageCount = filtered.length ? Math.ceil(Math.floor(productsLen/this.state.itemPerPage)) : 0;
+			console.log(filtered.length);
+			if(value){
+				this.setState({
+					'filteredProducts':filtered,
+					'pageCount': pageCount
+				});
 			}else{
-				this.setState({'filteredProducts': null});
+				this.setState({'filteredProducts': null,
+				'pageCount': pageCount});
 			}
 			
 		}
@@ -81,23 +90,23 @@ class App extends Component {
 				
 				self.setState({
 					'products':products,
-					'pagination': Math.ceil(Math.floor(products.length/this.state.itemPerPage))
+					'pageCount': Math.ceil(Math.floor(products.length/this.state.itemPerPage))
 				});
 				
 			});
 		}else{
 			let products = JSON.parse(localStore);
+			let pageCount = Math.ceil(Math.floor(products.length/this.state.itemPerPage));
+			
 			self.setState({
 				'products':products,
-				'pagination': Math.ceil(Math.floor(products.length/this.state.itemPerPage))
+				'pageCount': pageCount
 			});
 			
 		}
 	}
 
 	addToCartHandler(item){
-		
-
 		let temp=[];
 		let currentCart = this.state.cart;
 		var selectedProduct = this.findProductById(item);
@@ -152,7 +161,7 @@ class App extends Component {
 		if(query){
 			for (let i = 0; i < products.length; i++) {
 				let reg = RegExp(query,'gi');
-				if(products[i].name.match(reg)){
+				if((products[i].name).match(reg)){
 					filtered.push(products[i]);
 				}
 			}
@@ -284,9 +293,9 @@ class App extends Component {
 
 	onPageChangeHandler(e){
 		const target = e.target;
-		const pageNumber = target.dataset.pageNumber;
+		const pageNumber = parseInt(target.dataset.pageNumber);
 		this.setState({
-			'currentPage':pageNumber,
+			'currentPage': pageNumber
 		});
 		
 	}
@@ -296,7 +305,6 @@ class App extends Component {
 
 	render() {
 		let products = this.state.filteredProducts ? this.state.filteredProducts : (this.state.products ? this.state.products : null);
-		
 		if (!products) {
 			return (
 				<div className="App">
@@ -324,7 +332,7 @@ class App extends Component {
 					<Navigation onCartClickMenu={this.onCartMenuClickHandler.bind(this)} cart={this.state.cart}></Navigation>
 					{cart}
 					<div className="App">
-						{/* <SearchBar onSearch={this.onSearchHandler}></SearchBar> */}
+						<SearchBar onSearch={this.onSearchHandler}></SearchBar>
 						<ProductList 
 							products={products} 
 							addToCart={this.addToCartHandler}
@@ -336,7 +344,7 @@ class App extends Component {
 					<Pagination 
 						perpage="8" 
 						adjacent="3" 
-						totalPages={this.state.pagination} 
+						totalPages={this.state.pageCount} 
 						currentPage={this.state.currentPage} 
 						onPageChange={this.onPageChangeHandler.bind(this)}>
 					</Pagination>

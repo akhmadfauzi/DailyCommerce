@@ -27,6 +27,9 @@
 .first-page {
   width: auto !important;
 }
+.first-page * {
+  pointer-events: none;
+}
 
 .active {
   background: #5585BC;

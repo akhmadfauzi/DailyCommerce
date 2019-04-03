@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import '../styles/dist/pagination.css';
 export default class Pagination extends Component {
 
   render() {
 	const currentPage = parseInt(this.props.currentPage);
 	const adjacent = parseInt(this.props.adjacent);
-	const totalPages= this.props.totalPages;
+	const totalPages= parseInt(this.props.totalPages);
 	let pages = [];
 
 
@@ -25,14 +25,15 @@ export default class Pagination extends Component {
 			pages= [...pages,(<li key={i} onClick={this.props.onPageChange} data-page-number={pageNumber}>{pageNumber}</li>)];
 		}
 	}
-
-	const first = (currentPage > 1) ? (<li key={0} className="first-page" onClick={this.props.onPageChange} data-page-number={1}>First</li>) : '';
-	const last = (currentPage < totalPages) ? (<li key={totalPages-1} className="first-page" onClick={this.props.onPageChange} data-page-number={totalPages}>Last</li>) : '';
+	const firstPage = 1;
+	const lastPage = totalPages;
+	const first = (currentPage > 1 && (currentPage-adjacent) > 1) ? (<li key={0} className="first-page" onClick={this.props.onPageChange} data-page-number={firstPage} title="Go to first page"><i className="fa fa-angle-double-left"></i></li>) : '';
+	const last = (currentPage < totalPages && (currentPage+adjacent) < totalPages) ? (<li key={totalPages-1} className="first-page" onClick={this.props.onPageChange} data-page-number={lastPage} title="Go to last page"><i className="fa fa-angle-double-right"></i></li>) : '';
 	
     return (
         <div className="pagination">
             <ul>
-				{first}
+								{first}
                 {pages}
                 {last}
             </ul>
