@@ -2,14 +2,47 @@ $cream : #DDDCCE;
 $bluePale : #A6BAC5;
 $aquaPale : #7EA5A9;
 $blueFrog : #5585BC;
-$blackFrog : #1A1924;
+$blackFrog : #1a1924;
 $white : #fff;
 
 .footer{
-	height: 100px;
+	height: 200px;
 	width: 100%;
 	display: block;
 	background: $blackFrog;
 	position: relative;
 	bottom: 0 !important;
+	color: #fff;
+}
+
+.f-header{
+	height: 20px;
+	text-align: center;
+	padding: 5px 0;
+	color:#070711;
+}
+.f-content{
+	height: 140px;
+	display: block;
+
+	ul{
+		list-style: none;
+		padding: 0 10px;
+		margin:0;
+	}
+}
+
+.f-footer{
+	height: 30px;
+	font-size: .7em;
+	position: relative;
+	bottom: 0;
+	display: block;
+	width: 100%;
+	text-transform: lowercase;
+	text-align: center;
+
+	i{
+		color: red;
+	}
 }

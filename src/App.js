@@ -347,7 +347,7 @@ class App extends Component {
 					</Pagination>
 					{detail}
 					<Footer>
-						crafted with <i className="fa fa-heart"></i>
+						
 					</Footer>
 				</React.Fragment>
 			);

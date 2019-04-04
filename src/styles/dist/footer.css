@@ -1,10 +1,42 @@
 .footer {
-  height: 100px;
+  height: 200px;
   width: 100%;
   display: block;
-  background: #1A1924;
+  background: #1a1924;
   position: relative;
   bottom: 0 !important;
+  color: #fff;
+}
+
+.f-header {
+  height: 20px;
+  text-align: center;
+  padding: 5px 0;
+  color: #070711;
+}
+
+.f-content {
+  height: 140px;
+  display: block;
+}
+.f-content ul {
+  list-style: none;
+  padding: 0 10px;
+  margin: 0;
+}
+
+.f-footer {
+  height: 30px;
+  font-size: 0.7em;
+  position: relative;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  text-transform: lowercase;
+  text-align: center;
+}
+.f-footer i {
+  color: red;
 }
 
 /*# sourceMappingURL=footer.css.map */
