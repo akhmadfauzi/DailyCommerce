@@ -9,6 +9,8 @@
   position: fixed;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   z-index: 999;
 }
 
@@ -58,7 +60,7 @@
 }
 @media only screen and (min-width: 320px) and (max-width: 479px) {
   .modal-content {
-    width: 95%;
+    width: 100%;
   }
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
@@ -89,6 +91,8 @@
   position: fixed;
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
   height: 100%;
   background: #000;

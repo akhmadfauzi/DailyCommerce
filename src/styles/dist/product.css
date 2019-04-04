@@ -88,4 +88,10 @@
   font-size: 0.9em;
 }
 
+.lazy-image {
+  height: 64px !important;
+  width: 64px !important;
+  margin: 67px auto;
+}
+
 /*# sourceMappingURL=product.css.map */

@@ -300,9 +300,6 @@ class App extends Component {
 		
 	}
 
-	
-
-
 	render() {
 		let products = this.state.filteredProducts ? this.state.filteredProducts : (this.state.products ? this.state.products : null);
 		if (!products) {
@@ -332,7 +329,7 @@ class App extends Component {
 					<Navigation onCartClickMenu={this.onCartMenuClickHandler.bind(this)} cart={this.state.cart}></Navigation>
 					{cart}
 					<div className="App">
-						<SearchBar onSearch={this.onSearchHandler}></SearchBar>
+						{/* <SearchBar onSearch={this.onSearchHandler}></SearchBar> */}
 						<ProductList 
 							products={products} 
 							addToCart={this.addToCartHandler}
@@ -349,7 +346,9 @@ class App extends Component {
 						onPageChange={this.onPageChangeHandler.bind(this)}>
 					</Pagination>
 					{detail}
-					<Footer></Footer>
+					<Footer>
+						crafted with <i className="fa fa-heart"></i>
+					</Footer>
 				</React.Fragment>
 			);
 		}

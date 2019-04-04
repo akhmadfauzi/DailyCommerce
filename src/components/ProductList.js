@@ -3,6 +3,45 @@ import Product from './Product';
 import NotFound from './ui/NotFound';
 
 class ProductList extends Component {
+
+	componentDidMount(){
+		this.lazyImages();
+
+	}
+
+	componentDidUpdate(){
+		this.lazyImages();
+	}
+
+	lazyImages(){
+		var images = document.querySelectorAll('.lazy-image');
+		if(images.length){
+			window.addEventListener('DOMContentLoaded', this.loadLazyImage);
+			window.addEventListener('scroll', this.loadLazyImage);
+			window.addEventListener('resize', this.loadLazyImage);
+		}else{
+			window.removeEventListener('DOMContentLoaded', this.loadLazyImage);
+			window.removeEventListener('scroll', this.loadLazyImage);
+			window.removeEventListener('resize', this.loadLazyImage);
+		}
+	}
+
+	loadLazyImage(){
+		var images = document.querySelectorAll('.lazy-image');
+		images.forEach(element => {
+			setTimeout(()=>{
+				if(element.getBoundingClientRect().top < window.innerHeight && element.getBoundingClientRect().top > 0){
+					var image = new Image();
+					image.style.display = 'none';
+					image.src = element.dataset.src;
+					image.onload = function(e){
+						element.className = 'image';
+						element.src = element.dataset.src;
+					}
+				}
+			},250);
+		});
+	}
 	renderProducts(e){
 		return (
 			<Product 
