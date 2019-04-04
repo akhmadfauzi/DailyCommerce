@@ -87,16 +87,16 @@ class App extends Component {
 				console.log('Success');
 				// self.setState({ 'products': products });
 				localStorage.setItem('products', JSON.stringify(products));
-				
+				let pageCount = Math.ceil(Math.floor(products.length/self.state.itemPerPage));
 				self.setState({
 					'products':products,
-					'pageCount': Math.ceil(Math.floor(products.length/this.state.itemPerPage))
+					'pageCount': pageCount
 				});
 				
 			});
 		}else{
 			let products = JSON.parse(localStore);
-			let pageCount = Math.ceil(Math.floor(products.length/this.state.itemPerPage));
+			let pageCount = Math.ceil(Math.floor(products.length/self.state.itemPerPage));
 			
 			self.setState({
 				'products':products,
