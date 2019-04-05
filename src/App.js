@@ -43,6 +43,10 @@ class App extends Component {
 		this.getProducts();
 	}
 
+
+
+	
+
 	onSearchHandler(e){
 		let target = e.target;
 		let key = e.which;
@@ -296,9 +300,10 @@ class App extends Component {
 		const pageNumber = parseInt(target.dataset.pageNumber);
 		this.setState({
 			'currentPage': pageNumber
-		});
-		
+		});		
 	}
+
+
 
 	render() {
 		let products = this.state.filteredProducts ? this.state.filteredProducts : (this.state.products ? this.state.products : null);
