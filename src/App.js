@@ -334,7 +334,7 @@ class App extends Component {
 					<Navigation onCartClickMenu={this.onCartMenuClickHandler.bind(this)} cart={this.state.cart}></Navigation>
 					{cart}
 					<div className="App">
-						{/* <SearchBar onSearch={this.onSearchHandler}></SearchBar> */}
+						<SearchBar onSearch={this.onSearchHandler}></SearchBar>
 						<ProductList 
 							products={products} 
 							addToCart={this.addToCartHandler}
